@@ -143,7 +143,7 @@
     stage,
     head: {
       title: 'Вкладки', version: '27.1100',
-      href: 'https://axure.tensor.ru/StandardsV8/guidelines.html', status: 'Запущено согласование 30.09.26',
+      href: 'https://axure.tensor.ru/StandardsV8/guidelines.html', status: 'В работе',
     },
     devices: [
       { id: 'laptop', icon: 'laptop', label: 'Ноутбук', disabled: true }, // пока есть только монитор 1600×900
@@ -153,16 +153,12 @@
     // disabled — сценарий пока не сделан
     scenarios: [
       { id: 'demo', title: 'Общее демо' },
-      { group: 'Точка захода в редактор', items: [
-        { id: 'editor-inside', title: 'Админка (Inside)' },
-        { id: 'editor-account', title: 'Аккаунт' },
-        { id: 'editor-user', title: 'Пользователь', variants: [{ id: 'main', title: 'С главной' }, { id: 'settings', title: 'Из настроек' }] },
-      ] },
     ],
     // сценарии «Аккордеон» и «Подменю» — в отдельном прототипе github.com/MarieSmi/accordion-setup;
     // сценарии «Добавление вкладки» (tab-toolbar, tab-dash-head) убраны с панели, код остался
     links: [
-      { title: 'Макет', href: 'https://www.figma.com/proto/xMQ3ZEN4AUINgwjVoxR8hS/%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81%D0%B0-%D0%B2-%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80%D0%B5?node-id=16219-76404&p=f&t=RLyxreNsun3BEvZg-0&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=16219%3A76404&page-id=15961%3A68013&hide-ui=1' },
+      // { title: 'Макет', href: 'https://www.figma.com/proto/xMQ3ZEN4AUINgwjVoxR8hS/%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81%D0%B0-%D0%B2-%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D0%BE%D1%80%D0%B5?node-id=16219-76404&p=f&t=RLyxreNsun3BEvZg-0&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=16219%3A76404&page-id=15961%3A68013&hide-ui=1' }, // скрыт
+      { title: 'Настройка интерфейса', href: 'https://mariesmi.github.io/interface-prototype/' },
       { title: 'Настройка аккордеона', href: 'https://mariesmi.github.io/accordion-setup/' },
     ],
     team: [
@@ -175,6 +171,7 @@
     value: { scenario: stage.dataset.scenario },
     onScale: (s) => { scale = s; },
     onChange: ({ scenario, variant }) => {
+      stage.classList.remove('is-runtime');
       setMobile(false); // каждый сценарий начинается с десктопа
       stage.dataset.scenario = scenario;
       if (variant) stage.dataset.variant = variant;
@@ -194,7 +191,6 @@
       resetTabs(scenario.startsWith('tab-'));
       removeAddedSections(); // пункты, добавленные в «Настройке аккордеона», живут только в этом сценарии
       resetHistory(); // смена сценария — не правка: история начинается заново
-      setInside(variant ? `${scenario}:${variant}` : scenario);
       setEditorOnly();
     },
   });
@@ -720,8 +716,8 @@
     closeAccMore();
     stage.classList.toggle('is-mobile', on);
     $('#mob').hidden = !on;
-    $('#devDesktop').classList.toggle('is-active', !on);
-    $('#devMobile').classList.toggle('is-active', on);
+    $('#devDesktop').classList.toggle('is-on', !on);
+    $('#devMobile').classList.toggle('is-on', on);
     setMobAcc(false);
     renderMobile();
   }
@@ -761,7 +757,6 @@
     setWindow(null);
     closeRp();
     if (tw) closeTabsWin();
-    closeLangMenu();
     closeItemWin();
   }
 
@@ -864,7 +859,6 @@
     renderWin();
   }
 
-  registerWindow('menu', { win: menuWin, btn: $('#menuBtn'), onOpen: renderWin, onClose: closeDropdown });
   resetBtn.addEventListener('click', () => update(DEFAULTS));
   for (const r of menuWin.querySelectorAll('.mw-radio')) r.addEventListener('click', () => update({ submenuTrigger: r.dataset.trigger }));
   // Бургер в шапке аккордеона сворачивает / разворачивает меню — как «Широкий» и узкие виды в окне «Меню».
@@ -897,34 +891,6 @@
     closeDropdown();
   });
 
-  // ---------- Меню «Язык» (Figma 16065:176561) ----------
-  // Кнопка «Язык RU» в шапке открывает меню языков. Пока только ховеры: клик по языку и «•••» ничего не делают.
-  // Строка выбранного языка встаёт на высоту кнопки, ✕ меню — ровно поверх ✕ шапки конструктора (как на макете экрана).
-  const LANGS = [['RU', 'Русский'], ['EN', 'English'], ['KK', 'Қазақша'], ['FR', 'Français'], ['UZ', 'Oʻzbek'], ['AR', 'اللغة العربية'], ['HE', 'עִברִי']];
-  const langBtn = $('#langBtn');
-  const langMenu = $('#langMenu');
-  $('#langMenuList').innerHTML = LANGS.map(([code, name], i) =>
-    `<div class="mw-menu__item${i === 0 ? ' is-on' : ''}"><span class="mw-menu__dot"></span><span class="lang-menu__code">${code}</span><span class="mw-menu__text">${name}</span></div>`).join('') +
-    '<div class="lang-menu__more"><img src="assets/img/lang-more.svg" width="32" height="10" alt="Ещё"></div>';
-
-  function openLangMenu() {
-    closeOtherWindows(); // меню «Язык» — как окно: открыто одно
-    langMenu.hidden = false;
-    langBtn.classList.add('is-active');
-    const btn = stageRect(langBtn);
-    const close = stageRect($('.ctor-header .close-btn'));
-    // правый край меню — по центру ✕ шапки (✕ меню: right −14, 28px); 8 — верхний отступ списка, 16 — половина строки
-    langMenu.style.left = Math.round(close.left + close.width / 2 - langMenu.offsetWidth) + 'px';
-    langMenu.style.top = Math.round(btn.top + btn.height / 2 - 8 - 16) + 'px';
-  }
-  function closeLangMenu() { langMenu.hidden = true; langBtn.classList.remove('is-active'); }
-
-  langBtn.addEventListener('click', () => (langMenu.hidden ? openLangMenu() : closeLangMenu()));
-  $('#langMenuClose').addEventListener('click', closeLangMenu);
-  stage.addEventListener('mousedown', (e) => {
-    if (!langMenu.hidden && !e.target.closest('#langMenu, #langBtn')) closeLangMenu();
-  });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !langMenu.hidden) closeLangMenu(); });
 
   // ---------- Окно «Логотип» ----------
   // Логотип — иконка вместо птички в шапке аккордеона. «Загрузка» подставляет случайную иконку из набора.
@@ -955,7 +921,6 @@
   }
   function closeIconMenu() { iconMenu.hidden = true; }
 
-  registerWindow('logo', { win: logoWin, btn: $('#logoBtn'), onOpen: renderLogo, onClose: closeIconMenu });
   // Птичка в шапке аккордеона открывает то же окно, что кнопка «Логотип» в шапке конструктора.
   // «Пользователь» логотип не настраивает: окна нет ни из шапки конструктора, ни из аккордеона, ни из его редактора.
   const logoOn = () => stage.dataset.scenario !== 'editor-user';
@@ -1633,7 +1598,6 @@
     const answer = e.target.closest('[data-answer]')?.dataset.answer;
     // Это же подтверждение спрашивает и окно «Вкладки», и ✕ шапки конструктора в сценарии «Админка».
     if (tw) { answerTabsConfirm(answer); return; }
-    if (insideAsk) { answerInsideConfirm(answer); return; }
     if (ae) { answerAeConfirm(answer); return; }
     if (answer === 'yes') saveEditor();
     else if (answer === 'no') closeEditor();
@@ -1743,8 +1707,8 @@
 
   tabsW.addEventListener('mousedown', (e) => {
     if (e.target.closest('.is-editing, .tabs-w__bar')) return;
-    // «Пользователь» (и в приложении, и в конструкторе): вкладки только переключаются
-    if (stage.dataset.scenario === 'editor-user') {
+    // в приложении («Пользователь → С главной») вкладки только переключаются
+    if (stage.classList.contains('is-runtime')) {
       const tab = e.target.closest('.pg-tab');
       if (tab && e.button === 0) setActiveTab(+tab.dataset.id);
       return;
@@ -3102,91 +3066,23 @@
   document.addEventListener('keyup', (e) => { if (e.key === 'Enter' || e.key === 'Escape' || e.key === 'Delete') later(); }, true);
   document.addEventListener('input', () => { clearTimeout(inputTimer); inputTimer = setTimeout(record, INPUT_PAUSE); }, true);
 
-  // ---------- Точка захода в редактор: «Админка (Inside)», «Аккаунт», «Пользователь» ----------
-  // Экран приложения (Figma xMQ3ZEN4AUINgwjVoxR8hS: админка 18428:12935, панель «Online» 19470:56425, аккаунт 19523:72338,
-  // пользователь из настроек 19523:73629) поверх конструктора; превью на экранах красится токенами темы со сцены, логотип и надпись —
-  // как в аккордеоне. «С главной» (18398:16347) — сама сцена как приложение (.stage.is-runtime), вход — «4 квадратика».
-  // «Настроить» открывает конструктор (редактор), ✓ шапки — сохранить и вернуться, ✕ — вернуться; если были правки,
-  // сначала «Сохранить изменения?»: «Да» — как ✓, «Нет» — откатить правки этого захода, «Отмена» — остаться в редакторе.
-  const screenEntry = (sec) => ({
-    trigger: sec.querySelector('.ins-setup'),
-    show() {
-      for (const b of sec.querySelectorAll('.ipv__bird')) b.innerHTML = logoHTML();
-      for (const l of sec.querySelectorAll('.ipv__logo')) l.innerHTML = $('#goHome').innerHTML;
-      // вид аккордеона со сцены: узкий (с названиями / без названий / панель) — в превью тоже узкий
-      for (const v of sec.querySelectorAll('.ipv')) {
-        v.classList.toggle('is-narrow', isNarrow());
-        v.classList.toggle('is-labels', isNarrow() && settings.narrowView === 'labels');
-      }
-      sec.hidden = false;
-    },
-    hide() { sec.hidden = true; },
-  });
-  const runtimeEntry = {
-    trigger: $('#infApps'),
-    show() {
-      closePopups();
-      selectTabs(false);
-      if (state.page.section) { state.page = { section: null, item: null }; updatePage(); renderAccordion(); } // дашборд — Главная
-      stage.classList.add('is-runtime');
-    },
-    hide() { stage.classList.remove('is-runtime'); },
-  };
-  // ключ — сценарий или «сценарий:вилка»
-  const ENTRIES = {
-    'editor-inside': screenEntry($('#inside')), 'editor-account': screenEntry($('#account')),
-    'editor-user:settings': screenEntry($('#userSettings')), 'editor-user:main': runtimeEntry,
-  };
-  let entry = null;      // точка захода текущего сценария; null — другой сценарий
-  let insideSnap = null; // снимок при входе в редактор с экрана; null — редактор открыт не с экрана
-  let insideAsk = false; // подтверждение открыто ✕ шапки в сценарии захода
-
-  function showInside() {
-    setMobile(false); // экран приложения и «С главной» — десктопные; мобильный вид — только в конструкторе
+  // ---------- Выход из редактора: «Пользователь → С главной» ----------
+  // ✓ шапки сохраняет правки и показывает саму сцену как приложение (.stage.is-runtime, дашборд — Главная);
+  // обратно в редактор — «4 квадратика». ✕ из редактора не выводит.
+  $('.ch-done').addEventListener('click', () => {
+    record();
+    resetHistory();
+    setMobile(false);
     closeOtherWindows();
     closeSubmenu();
-    insideSnap = null;
-    entry.show();
-  }
-  function setInside(scenario) {
-    insideAsk = false;
-    smeConfirm.hidden = true;
-    for (const e of Object.values(ENTRIES)) e.hide();
-    insideSnap = null;
-    entry = ENTRIES[scenario] ?? null;
-    if (entry) showInside();
-  }
-  function answerInsideConfirm(answer) {
-    smeConfirm.hidden = true;
-    insideAsk = false;
-    if (answer === 'cancel') return;
-    if (answer === 'no') restore(insideSnap);
-    resetHistory();
-    showInside();
-  }
-
-  for (const e of Object.values(ENTRIES)) {
-    e.trigger.addEventListener('click', () => {
-      e.hide();
-      resetHistory(); // отмена в редакторе — только в пределах этого захода
-      insideSnap = snapshot();
-    });
-  }
-  $('.ctor-header .done-btn').addEventListener('click', () => {
-    // «Общее демо»: ✓ сохраняет настройки и уводит на сценарий захода из админки
-    if (stage.dataset.scenario === 'demo') { frame.select('editor-inside'); return; }
-    if (insideSnap === null) return;
-    record();
-    resetHistory();
-    showInside();
+    closePopups();
+    selectTabs(false);
+    if (state.page.section) { state.page = { section: null, item: null }; updatePage(); renderAccordion(); }
+    stage.classList.add('is-runtime');
   });
-  $('.ctor-header .close-btn').addEventListener('click', () => {
-    if (insideSnap === null) return;
-    record();
-    if (snapshot() === insideSnap) { resetHistory(); showInside(); return; }
-    closeOtherWindows();
-    insideAsk = true;
-    smeConfirm.hidden = false;
+  $('#infApps').addEventListener('click', () => {
+    stage.classList.remove('is-runtime');
+    resetHistory();
   });
 
   renderAccordion();

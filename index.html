@@ -6,49 +6,43 @@
   <title>Вкладки</title>
   <link rel="icon" href="data:,">
   <!-- токены и рамка демо (шапка и вспомогательная панель) — github.com/MarieSmi/ui-kit -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/MarieSmi/ui-kit@1.0.0/tokens.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/MarieSmi/ui-kit@1.0.0/components/demo-frame/demo-frame.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/MarieSmi/ui-kit@1.13.0/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/MarieSmi/ui-kit@1.13.0/components/demo-frame/demo-frame.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/MarieSmi/ui-kit@1.13.0/components/button/button.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="viewport">
     <div class="stage tabs-added" id="stage" data-scenario="demo">
 
-      <!-- Шапка конструктора -->
-      <header class="ctor-header">
-        <div class="ctor-header__left">
-          <div class="pill-group">
-            <button class="tb-btn tb-btn--text" type="button" id="menuBtn"><span class="ico">&#xEBBE;</span><span class="tb-btn__label">Меню</span></button>
-            <button class="tb-btn tb-btn--text" type="button" id="logoBtn"><span class="ico">&#xE9E2;</span><span class="tb-btn__label">Логотип</span></button>
+      <!-- Шапка конструктора из проекта popups (Figma rHabzni5OI5D4fxBLQdj2m 5:28058): название скрыто, ✓ — выход в «Пользователь → С главной», ✕ из редактора не выводит -->
+      <header class="ch">
+        <div class="ch-title">Название сайта</div>
+        <div class="ch-center">
+          <div class="ch-tumbler" aria-label="Устройство">
+            <button class="ch-seg is-on" type="button" id="devDesktop" aria-label="Десктоп"><span class="ch-seg__ico">&#xE730;</span></button>
+            <button class="ch-seg" type="button" id="devMobile" aria-label="Мобильная версия"><span class="ch-seg__ico">&#xE637;</span></button>
+            <button class="ch-seg" type="button" aria-label="Ещё"><span class="ch-seg__ico">&#xEAB4;</span></button>
           </div>
         </div>
-
-        <div class="ctor-header__center">
-          <div class="ctor-header__tools">
-            <div class="pill-group" id="alignGroup" role="radiogroup" aria-label="Позиционирование контента">
-              <button class="tb-btn" type="button" role="radio" data-align="left" aria-label="Слева" aria-checked="false"><span class="ico">&#xE6C0;</span></button>
-              <button class="tb-btn" type="button" role="radio" data-align="center" aria-label="По центру" aria-checked="false"><span class="ico">&#xE6BF;</span></button>
-              <button class="tb-btn is-active" type="button" role="radio" data-align="stretch" aria-label="Растянуть" aria-checked="true"><span class="ico">&#xE6C2;</span></button>
-            </div>
-            <div class="pill-group pill-group--r12">
-              <!-- Десктоп / мобилка: мобильный вид — во всех сценариях (в точках захода — в конструкторе) -->
-              <button class="tb-btn is-active" type="button" id="devDesktop" aria-label="Десктоп"><span class="ico">&#xE730;</span></button>
-              <button class="tb-btn" type="button" id="devMobile" aria-label="Мобильная версия"><span class="ico">&#xE637;</span></button>
-              <button class="tb-btn" type="button"><span class="ico">&#xEAB4;</span></button>
-            </div>
-            <div class="pill-group pill-group--r12">
-              <button class="tb-btn" type="button" id="undoBtn" aria-label="Отменить" disabled><span class="ico">&#xE6CF;</span></button>
-              <button class="tb-btn" type="button" id="redoBtn" aria-label="Повторить" disabled><span class="ico">&#xE6CA;</span></button>
-              <button class="tb-btn" type="button"><span class="ico">&#xE629;</span></button>
-              <button class="tb-btn tb-btn--zoom" type="button">100%</button>
+        <div class="ch-right">
+          <div class="ch-cmds">
+            <button class="btn btn--ghost btn--style-label btn--icon ch-cmd" type="button" id="undoBtn" aria-label="Отменить" disabled><span class="btn__icon">&#xE6CF;</span></button>
+            <button class="btn btn--ghost btn--style-label btn--icon ch-cmd" type="button" id="redoBtn" aria-label="Повторить" disabled><span class="btn__icon">&#xE6CA;</span></button>
+            <button class="btn btn--ghost btn--style-label btn--icon ch-cmd" type="button" aria-label="Сбросить" disabled><span class="btn__icon">&#xE629;</span></button>
+            <button class="btn btn--ghost btn--style-label btn--icon ch-cmd" type="button" aria-label="Предпросмотр"><span class="btn__icon">&#xEAB9;</span></button>
+            <button class="btn btn--ghost btn--style-label btn--icon ch-cmd" type="button" aria-label="Компоновка"><span class="btn__icon">&#xEBBA;</span></button>
+            <div class="ch-zoom">
+              <span class="ch-zoom__sep"></span>
+              <button class="btn btn--ghost btn--style-label btn--size-m btn--icon ch-zoom__btn" type="button" aria-label="Уменьшить"><span class="btn__icon">&#xE6EA;</span></button>
+              <button class="btn btn--link btn--style-label btn--size-m ch-zoom__val" type="button">100%</button>
+              <button class="btn btn--ghost btn--style-label btn--size-m btn--icon ch-zoom__btn" type="button" aria-label="Увеличить"><span class="btn__icon">&#xE6E9;</span></button>
             </div>
           </div>
-        </div>
-
-        <div class="ctor-header__right">
-          <button class="pill-group lang-btn" type="button" id="langBtn">Язык RU</button>
-          <button class="done-btn" type="button" aria-label="Сохранить"><span class="ico ico--20">&#xE75E;</span></button>
-          <button class="close-btn" type="button" aria-label="Закрыть"><img src="assets/img/close-header.svg" width="28" height="28" alt=""></button>
+          <div class="ch-save">
+            <button class="btn btn--filled btn--style-success btn--icon ch-done" type="button" aria-label="Сохранить"><span class="btn__icon">&#xE75E;</span></button>
+            <button class="btn btn--filled btn--style-pale btn--icon" type="button" aria-label="Закрыть"><img src="assets/img/close-union.svg" width="12" height="12" alt=""></button>
+          </div>
         </div>
       </header>
 
@@ -634,11 +628,6 @@
       </section>
 
       <!-- Выпадающий список «Состояние панели» -->
-      <!-- Меню «Язык» (Figma 16065:176561): только ховеры, выбор не меняет язык; строка выбранного языка — на высоте кнопки, ✕ меню — поверх ✕ шапки -->
-      <div class="mw-menu lang-menu" id="langMenu" hidden>
-        <div class="mw-menu__list" id="langMenuList"></div>
-        <button class="mw-menu__close" type="button" id="langMenuClose" aria-label="Закрыть"><img src="assets/img/close-menu.svg" width="12" height="12" alt=""></button>
-      </div>
       <div class="mw-menu" id="mwMenu" hidden>
         <div class="mw-menu__list" id="mwMenuList"></div>
         <button class="mw-menu__close" type="button" id="mwMenuClose" aria-label="Закрыть"><img src="assets/img/close-menu.svg" width="12" height="12" alt=""></button>
@@ -921,199 +910,6 @@
         </div>
       </div>
 
-      <!-- Сценарий «Админка (Inside)» (Figma xMQ3ZEN4AUINgwjVoxR8hS 18428:12935): экран 1600×843 поверх конструктора.
-           Фон — картинка (меню saby inside, список, колонка справа); поверх свёрстана панель «Online» по Figma 19470:56425:
-           мастер-список (только ховер), раздел «Оформление» — «Настроить ›» открывает конструктор,
-           превью 700×350 — цвета и фон токенами темы со сцены. -->
-      <section class="ins" id="inside" hidden aria-label="Админка">
-        <div class="ins__screen">
-          <img class="ins__bg" src="assets/img/inside/screen.png" width="1600" height="843" alt="">
-          <div class="adm">
-            <div class="adm__head">
-              <span class="adm__logo"><img src="assets/img/inside/online-logo.svg" width="40" height="40" alt=""></span>
-              <span class="adm__title">Online</span>
-              <span class="adm__ver">26.4234</span>
-              <span class="adm__pub">Опубликовано для всех</span>
-              <span class="adm__save">Сохранить</span>
-            </div>
-            <ul class="adm-ml">
-              <li class="adm-ml__item">Настройка</li>
-              <li class="adm-ml__item is-sel">Оформление</li>
-              <li class="adm-ml__item adm-ml__item--sub">Приветствие<i class="adm-sw is-on"></i></li>
-              <li class="adm-ml__item">Авторизация</li>
-              <li class="adm-ml__item">Домены</li>
-              <li class="adm-ml__item">Компоненты</li>
-              <li class="adm-ml__item">Контекст данных</li>
-              <li class="adm-ml__item">Тарифы</li>
-              <li class="adm-ml__item">Роли</li>
-              <li class="adm-ml__item">Оповещения</li>
-              <li class="adm-ml__item">Компаньоны</li>
-              <li class="adm-ml__item">Активность</li>
-              <li class="adm-ml__item">Конфигурации</li>
-              <li class="adm-ml__item">Манифест<i class="adm-sw"></i></li>
-            </ul>
-            <div class="adm__main">
-              <div class="adm-intro">
-                <p class="adm-intro__title">Настройка интерфейса Saby</p>
-                <div class="adm-intro__tags">
-                  <span><i class="ico">&#xE9E2;</i>Логотип</span>
-                  <span><i class="ico">&#xEBBA;</i>Компоновка</span>
-                  <span class="adm-intro__g8"><i class="ico">&#xEBBE;</i>Меню</span>
-                  <span class="adm-intro__g8"><i class="ico">&#xEBA0;</i>Язык</span>
-                </div>
-                <button class="ins-setup" type="button">Настроить<span class="ico">&#xE9AB;</span></button>
-              </div>
-              <!-- Превью (Figma 19470:56532) — то же превью, что в «Аккаунте», 700×350 без масштаба -->
-              <div class="ipv ipv--700">
-                <div class="ipv__acc">
-                  <div class="ipv__head"><span class="ipv__bird"></span><span class="ipv__logo"></span></div>
-                  <div class="ipv__item"><i></i><b></b></div>
-                  <div class="ipv__item is-sel"><i></i><b></b></div>
-                  <div class="ipv__item"><i></i><b></b></div>
-                  <div class="ipv__item"><i></i><b></b></div>
-                  <div class="ipv__item"><i></i><b></b></div>
-                </div>
-                <div class="ipv__dash">
-                  <div class="ipv__page">
-                    <div class="ipv__row1"><i class="ipv__a1"></i><i class="ipv__search"></i></div>
-                    <div class="ipv__tabs"><span class="ipv__tab"><i></i><i class="ipv__dot"></i></span><span class="ipv__tab"><i></i></span><span class="ipv__tab ipv__tab--on"><i></i><i class="ipv__under"></i></span></div>
-                    <div class="ipv__card">
-                      <div class="ipv__line"><i class="ipv__sq"></i><span><span><i style="width:24.466px"></i><i style="width:17.192px"></i></span><i style="width:95.218px"></i><i style="width:57.528px"></i></span></div>
-                      <i class="ipv__sep"></i>
-                      <div class="ipv__line"><i class="ipv__sq"></i><span><span><i style="width:24.466px"></i><i style="width:17.192px"></i></span><i style="width:95.218px"></i><i style="width:57.528px"></i></span></div>
-                      <i class="ipv__sep"></i>
-                      <div class="ipv__line"><i class="ipv__sq"></i><span><span><i style="width:24.466px"></i><i style="width:17.192px"></i></span><i style="width:95.218px"></i><i style="width:57.528px"></i></span></div>
-                    </div>
-                  </div>
-                  <div class="ipv__rp"><span><i></i><i></i></span><span><i class="ipv__shop"></i><i></i><i></i><i class="ipv__lav"></i></span></div>
-                </div>
-                <div class="ipv__cu">
-                  <div class="ipv__note"><i class="ipv__cap"></i><i class="ipv__blk"></i></div>
-                  <div class="ipv__note"><i class="ipv__cap"></i><span class="ipv__sqs"><i></i><i></i><i></i></span></div>
-                  <div class="ipv__note"><i class="ipv__cap"></i><i class="ipv__blk"></i></div>
-                  <div class="ipv__note ipv__note--news"><i class="ipv__pic"></i><span><i></i><i></i><i class="ipv__end"></i></span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Сценарий «Аккаунт» (Figma xMQ3ZEN4AUINgwjVoxR8hS 19523:72338): экран 1600×843 — картинка; середина живая —
-           как в админке: «Настройка интерфейса Saby», строка разделов, «Настроить ›» (открывает конструктор) и превью 700×350 -->
-      <section class="ins" id="account" hidden aria-label="Аккаунт">
-        <div class="ins__screen">
-          <img class="ins__bg ins__bg--acc" src="assets/img/account/bg.png" width="1600" height="843" alt="">
-          <i class="ins-acc-reset"></i><!-- «Сбросить настройки аккаунта» в макете скрыта — закрыта подложкой -->
-          <div class="ins-main ins-main--acc">
-            <div class="adm-intro">
-              <p class="adm-intro__title">Настройка интерфейса Saby</p>
-              <div class="adm-intro__tags">
-                <span><i class="ico">&#xE9E2;</i>Логотип</span>
-                <span><i class="ico">&#xEBBA;</i>Компоновка</span>
-                <span class="adm-intro__g8"><i class="ico">&#xEBBE;</i>Меню</span>
-                <span class="adm-intro__g8"><i class="ico">&#xEBA0;</i>Язык</span>
-              </div>
-              <button class="ins-setup" type="button">Настроить<span class="ico">&#xE9AB;</span></button>
-            </div>
-            <div class="ipv ipv--700">
-              <div class="ipv__acc">
-                <div class="ipv__head"><span class="ipv__bird"></span><span class="ipv__logo"></span></div>
-                <div class="ipv__item"><i></i><b></b></div>
-                <div class="ipv__item is-sel"><i></i><b></b></div>
-                <div class="ipv__item"><i></i><b></b></div>
-                <div class="ipv__item"><i></i><b></b></div>
-                <div class="ipv__item"><i></i><b></b></div>
-              </div>
-              <div class="ipv__dash">
-                <div class="ipv__page">
-                  <div class="ipv__row1"><i class="ipv__a1"></i><i class="ipv__search"></i></div>
-                  <div class="ipv__tabs"><span class="ipv__tab"><i></i><i class="ipv__dot"></i></span><span class="ipv__tab"><i></i></span><span class="ipv__tab ipv__tab--on"><i></i><i class="ipv__under"></i></span></div>
-                  <div class="ipv__card">
-                    <div class="ipv__line"><i class="ipv__sq"></i><span><span><i style="width:24.466px"></i><i style="width:17.192px"></i></span><i style="width:95.218px"></i><i style="width:57.528px"></i></span></div>
-                    <i class="ipv__sep"></i>
-                    <div class="ipv__line"><i class="ipv__sq"></i><span><span><i style="width:24.466px"></i><i style="width:17.192px"></i></span><i style="width:95.218px"></i><i style="width:57.528px"></i></span></div>
-                    <i class="ipv__sep"></i>
-                    <div class="ipv__line"><i class="ipv__sq"></i><span><span><i style="width:24.466px"></i><i style="width:17.192px"></i></span><i style="width:95.218px"></i><i style="width:57.528px"></i></span></div>
-                  </div>
-                </div>
-                <div class="ipv__rp"><span><i></i><i></i></span><span><i class="ipv__shop"></i><i></i><i></i><i class="ipv__lav"></i></span></div>
-              </div>
-              <div class="ipv__cu">
-                <div class="ipv__note"><i class="ipv__cap"></i><i class="ipv__blk"></i></div>
-                <div class="ipv__note"><i class="ipv__cap"></i><span class="ipv__sqs"><i></i><i></i><i></i></span></div>
-                <div class="ipv__note"><i class="ipv__cap"></i><i class="ipv__blk"></i></div>
-                <div class="ipv__note ipv__note--news"><i class="ipv__pic"></i><span><i></i><i></i><i class="ipv__end"></i></span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Сценарий «Пользователь → Из настроек» (Figma xMQ3ZEN4AUINgwjVoxR8hS 19523:73629): экран 1600×843 — картинка (аккордеон,
-           информеры, ЦУ); середина живая: мастер-список настроек (только ховер), «Интерфейс» — как в админке, кликается только «Настроить ›» -->
-      <section class="ins" id="userSettings" hidden aria-label="Пользователь — настройки">
-        <div class="ins__screen">
-          <img class="ins__bg ins__bg--user" src="assets/img/user/settings.png" width="1602" height="845" alt="">
-          <div class="usr">
-            <ul class="adm-ml adm-ml--usr">
-              <li class="adm-ml__item">Доступ и роли</li>
-              <li class="adm-ml__item is-sel">Интерфейс</li>
-              <li class="adm-ml__item">Уведомления</li>
-              <li class="adm-ml__item">Рабочее место</li>
-              <li class="adm-ml__item">Устройства</li>
-              <li class="adm-ml__item">Действия</li>
-              <li class="adm-ml__item">Бизнес-процессы</li>
-              <li class="adm-ml__item">Проходная</li>
-              <li class="adm-ml__item">Подписи</li>
-              <li class="adm-ml__item">Десктопные приложения</li>
-              <li class="adm-ml__item">Приветствие<i class="adm-sw"></i></li>
-            </ul>
-            <div class="usr__main">
-              <div class="adm-intro">
-                <p class="adm-intro__title">Настройка интерфейса Saby</p>
-                <div class="adm-intro__tags">
-                  <span><i class="ico">&#xE9E2;</i>Логотип</span>
-                  <span><i class="ico">&#xEBBA;</i>Компоновка</span>
-                  <span class="adm-intro__g8"><i class="ico">&#xEBBE;</i>Меню</span>
-                  <span class="adm-intro__g8"><i class="ico">&#xEBA0;</i>Язык</span>
-                </div>
-                <button class="ins-setup" type="button">Настроить<span class="ico">&#xE9AB;</span></button>
-              </div>
-              <div class="ipv ipv--700">
-                <div class="ipv__acc">
-                  <div class="ipv__head"><span class="ipv__bird"></span><span class="ipv__logo"></span></div>
-                  <div class="ipv__item"><i></i><b></b></div>
-                  <div class="ipv__item is-sel"><i></i><b></b></div>
-                  <div class="ipv__item"><i></i><b></b></div>
-                  <div class="ipv__item"><i></i><b></b></div>
-                  <div class="ipv__item"><i></i><b></b></div>
-                </div>
-                <div class="ipv__dash">
-                  <div class="ipv__page">
-                    <div class="ipv__row1"><i class="ipv__a1"></i><i class="ipv__search"></i></div>
-                    <div class="ipv__tabs"><span class="ipv__tab"><i></i><i class="ipv__dot"></i></span><span class="ipv__tab"><i></i></span><span class="ipv__tab ipv__tab--on"><i></i><i class="ipv__under"></i></span></div>
-                    <div class="ipv__card">
-                      <div class="ipv__line"><i class="ipv__sq"></i><span><span><i style="width:24.466px"></i><i style="width:17.192px"></i></span><i style="width:95.218px"></i><i style="width:57.528px"></i></span></div>
-                      <i class="ipv__sep"></i>
-                      <div class="ipv__line"><i class="ipv__sq"></i><span><span><i style="width:24.466px"></i><i style="width:17.192px"></i></span><i style="width:95.218px"></i><i style="width:57.528px"></i></span></div>
-                      <i class="ipv__sep"></i>
-                      <div class="ipv__line"><i class="ipv__sq"></i><span><span><i style="width:24.466px"></i><i style="width:17.192px"></i></span><i style="width:95.218px"></i><i style="width:57.528px"></i></span></div>
-                    </div>
-                  </div>
-                  <div class="ipv__rp"><span><i></i><i></i></span><span><i class="ipv__shop"></i><i></i><i></i><i class="ipv__lav"></i></span></div>
-                </div>
-                <div class="ipv__cu">
-                  <div class="ipv__note"><i class="ipv__cap"></i><i class="ipv__blk"></i></div>
-                  <div class="ipv__note"><i class="ipv__cap"></i><span class="ipv__sqs"><i></i><i></i><i></i></span></div>
-                  <div class="ipv__note"><i class="ipv__cap"></i><i class="ipv__blk"></i></div>
-                  <div class="ipv__note ipv__note--news"><i class="ipv__pic"></i><span><i></i><i></i><i class="ipv__end"></i></span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
       <!-- Сценарий «Виды подменю и пунктов»: статичные подменю (Контакты, Бизнес, Календарь) и справа колонкой — отличающиеся пункты
            подменю (заголовки, уровни, элементы справа) на фоне конструктора, только ховеры; наполняет app.js -->
       <section class="kinds" id="submenuKinds" aria-label="Виды подменю и пунктов"></section>
@@ -1128,7 +924,7 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/gh/MarieSmi/ui-kit@1.0.0/components/demo-frame/demo-frame.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/MarieSmi/ui-kit@1.13.0/components/demo-frame/demo-frame.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
