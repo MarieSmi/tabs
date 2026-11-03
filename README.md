@@ -8,7 +8,7 @@
 ## Ссылки
 
 - Демо: https://vkladki.vercel.app
-- Репозиторий (публичный): https://github.com/MarieSmi/vkladki
+- Репозиторий (публичный): https://github.com/MarieSmi/tabs
 - Проект Vercel: https://vercel.com/maria-smi/vkladki
 - Шапка демо и вспомогательная панель — модуль demo-frame из https://github.com/MarieSmi/ui-kit вместе с токенами (подключён с jsDelivr по тегу, `index.html`)
 
