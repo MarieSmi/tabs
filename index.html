@@ -1,0 +1,1134 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Вкладки</title>
+  <link rel="icon" href="data:,">
+  <!-- токены и рамка демо (шапка и вспомогательная панель) — github.com/MarieSmi/ui-kit -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/MarieSmi/ui-kit@1.0.0/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/MarieSmi/ui-kit@1.0.0/components/demo-frame/demo-frame.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="viewport">
+    <div class="stage tabs-added" id="stage" data-scenario="demo">
+
+      <!-- Шапка конструктора -->
+      <header class="ctor-header">
+        <div class="ctor-header__left">
+          <div class="pill-group">
+            <button class="tb-btn tb-btn--text" type="button" id="menuBtn"><span class="ico">&#xEBBE;</span><span class="tb-btn__label">Меню</span></button>
+            <button class="tb-btn tb-btn--text" type="button" id="logoBtn"><span class="ico">&#xE9E2;</span><span class="tb-btn__label">Логотип</span></button>
+          </div>
+        </div>
+
+        <div class="ctor-header__center">
+          <div class="ctor-header__tools">
+            <div class="pill-group" id="alignGroup" role="radiogroup" aria-label="Позиционирование контента">
+              <button class="tb-btn" type="button" role="radio" data-align="left" aria-label="Слева" aria-checked="false"><span class="ico">&#xE6C0;</span></button>
+              <button class="tb-btn" type="button" role="radio" data-align="center" aria-label="По центру" aria-checked="false"><span class="ico">&#xE6BF;</span></button>
+              <button class="tb-btn is-active" type="button" role="radio" data-align="stretch" aria-label="Растянуть" aria-checked="true"><span class="ico">&#xE6C2;</span></button>
+            </div>
+            <div class="pill-group pill-group--r12">
+              <!-- Десктоп / мобилка: мобильный вид — во всех сценариях (в точках захода — в конструкторе) -->
+              <button class="tb-btn is-active" type="button" id="devDesktop" aria-label="Десктоп"><span class="ico">&#xE730;</span></button>
+              <button class="tb-btn" type="button" id="devMobile" aria-label="Мобильная версия"><span class="ico">&#xE637;</span></button>
+              <button class="tb-btn" type="button"><span class="ico">&#xEAB4;</span></button>
+            </div>
+            <div class="pill-group pill-group--r12">
+              <button class="tb-btn" type="button" id="undoBtn" aria-label="Отменить" disabled><span class="ico">&#xE6CF;</span></button>
+              <button class="tb-btn" type="button" id="redoBtn" aria-label="Повторить" disabled><span class="ico">&#xE6CA;</span></button>
+              <button class="tb-btn" type="button"><span class="ico">&#xE629;</span></button>
+              <button class="tb-btn tb-btn--zoom" type="button">100%</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="ctor-header__right">
+          <button class="pill-group lang-btn" type="button" id="langBtn">Язык RU</button>
+          <button class="done-btn" type="button" aria-label="Сохранить"><span class="ico ico--20">&#xE75E;</span></button>
+          <button class="close-btn" type="button" aria-label="Закрыть"><img src="assets/img/close-header.svg" width="28" height="28" alt=""></button>
+        </div>
+      </header>
+
+      <!-- Аккордеон -->
+      <nav class="accordion" id="accordion" aria-label="Навигация приложения">
+        <div class="acc-header">
+          <div class="acc-header__row" data-tip="На главную">
+            <button class="acc-bird" type="button" aria-label="Логотип" data-tip=""><span class="ico24">&#xE9E2;</span></button>
+            <button class="acc-logo" type="button" id="goHome" aria-label="saby"><svg class="acc-logo__svg" width="48.2" height="23.82" viewBox="0 0 48.2 23.82" aria-hidden="true"><path fill="currentColor" d="M0.720 14.200C1.040 16.580 3.260 18.120 6.360 18.120C9.300 18.120 11.220 16.880 11.220 15C11.220 13.120 9.900 12.260 6.160 11.700C3.460 11.300 2.700 10.920 2.700 9.960C2.700 8.980 3.880 8.320 5.620 8.320C7.440 8.320 8.800 9.220 9.200 10.660L10.720 10.360C10.360 8.400 8.160 6.920 5.620 6.920C2.920 6.920 1.120 8.180 1.120 10.020C1.120 11.780 2.360 12.600 6.120 13.120C8.680 13.460 9.620 13.980 9.620 15.020C9.620 16.080 8.380 16.720 6.360 16.720C3.980 16.720 2.580 15.720 2.240 13.860L0.720 14.200ZM12.860 14.980C12.860 16.920 14.320 18.120 16.780 18.120C18.460 18.120 20 17.460 20.720 16.480L20.760 16.480L20.760 17.820L22.340 17.820L22.340 10.380C22.340 8.280 20.620 6.920 17.920 6.920C16.580 6.920 15.460 7.260 14.560 7.920C13.660 8.580 13.120 9.460 12.920 10.560L14.500 10.900C14.820 9.300 16.080 8.360 17.920 8.360C19.540 8.360 20.580 9.020 20.580 10.040C20.580 10.860 19.800 11.280 17.540 11.660C14.160 12.200 12.860 13.120 12.860 14.980ZM20.700 14.120C20.700 15.460 19 16.660 17.120 16.660C15.360 16.660 14.520 16.120 14.520 14.980C14.520 13.940 15.460 13.380 17.840 12.980C19.600 12.680 20.360 12.380 20.660 11.840L20.700 11.840ZM26.480 16.500C27.340 17.520 28.800 18.120 30.460 18.120C33.760 18.120 36.140 15.800 36.140 12.520C36.140 9.340 33.740 6.920 30.560 6.920C28.900 6.920 27.420 7.520 26.540 8.560L26.500 8.560L26.500 3.220L24.860 3.220L24.860 17.820L26.440 17.820L26.440 16.500ZM34.500 12.520C34.500 15.060 32.900 16.680 30.360 16.680C28.200 16.680 26.500 15.180 26.500 13.320L26.500 11.720C26.500 9.860 28.220 8.360 30.460 8.360C32.880 8.360 34.500 10 34.500 12.520ZM38.600 22.320L40.460 22.320L48.000 7.220L46.120 7.220L42.260 15.180L42.220 15.180L38.340 7.220L36.460 7.220L41.320 16.900Z"/></svg></button>
+            <button class="acc-plus" type="button" aria-label="Добавить раздел" data-tip=""><span class="ico">&#xEB25;</span><span class="click-pin" aria-hidden="true"><img src="assets/img/click-cursor.svg" width="16" height="16" alt=""></span></button>
+          </div>
+          <div class="acc-group">
+            <button class="acc-burger" type="button" id="accBurger" aria-label="Свернуть меню"><span class="acc-icon16">&#xE91F;</span></button>
+            <span class="acc-group__title">предприятие</span>
+          </div>
+        </div>
+        <ul class="acc-list" id="accList"></ul>
+        <!-- «Настройка аккордеона»: вход в редактор аккордеона — кнопка-ссылка «Настроить» внизу по центру
+             (Figma nuC4KFMiS36uDWDUp9wKGl 17890:7577, ховер 17890:7593); в узком — только карандаш -->
+        <button class="acc-setup" type="button" id="accGear"><span class="ico">&#xE660;</span><span class="acc-setup__text">Настроить</span><span class="click-pin" aria-hidden="true"><img src="assets/img/click-cursor.svg" width="16" height="16" alt=""></span></button>
+      </nav>
+
+      <!-- Контент: середина свёрстана (Figma 16106:372823, скелетон 18711:38376), информеры и ЦУ — скриншот -->
+      <main class="content">
+        <div class="content__mid">
+
+          <!-- Главная -->
+          <section class="page" id="pageMain">
+            <div class="pg-head">
+              <div class="pg-search">Найти</div>
+              <!-- Сценарий «Из шапки дашборда»: ссылка «+вкладка» (Figma nuC4KFMiS36uDWDUp9wKGl 17890:7577, label-кнопка) -->
+              <div class="pg-head__right">
+                <button class="pg-link" type="button" id="dashAddTab"><span class="ico">&#xEB25;</span><span class="pg-link__text">вкладка</span></button>
+                <!-- Подсценарий «По чипсе»: вместо ссылки чипса «вкладка» (Figma nuC4KFMiS36uDWDUp9wKGl 18813:5910, style contrast) — сразу добавляет вкладку -->
+                <button class="pg-chip" type="button" id="dashChipTab">вкладки</button>
+                <!-- Подсценарий «С фильтрами»: фильтры справа от ссылки (Figma xMQ3ZEN4AUINgwjVoxR8hS 19325:47991), статика -->
+                <div class="pg-filters">
+                  <span class="pg-filter">Январь</span>
+                  <button class="pg-filter-btn" type="button" aria-label="Фильтры"><span class="ico">&#xE94C;</span></button>
+                </div>
+              </div>
+            </div>
+            <!-- Виджет «Вкладки» (Figma xMQ3ZEN4AUINgwjVoxR8hS 18731:100134): вкладки рисует app.js -->
+            <div class="tabs-w" id="tabsWidget">
+              <div class="pg-tabs" id="tabsList"></div>
+              <div class="tabs-w__toolbar">
+                <div class="tabs-w__bar" id="tabsBar">
+                  <button class="tabs-w__btn" type="button" id="tabsPlus" aria-label="Добавить вкладку"><span class="ico24">&#xE95D;</span></button>
+                  <button class="tabs-w__btn" type="button" id="tabsGear" aria-label="Настроить вкладки"><span class="ico24">&#xE75D;</span></button>
+                  <button class="tabs-w__btn tabs-w__btn--del" type="button" id="tabsDel" aria-label="Удалить вкладки"><span class="ico24">&#xEB72;</span></button>
+                  <button class="tabs-w__btn" type="button" id="tabsDots" aria-label="Ещё"><span class="ico24">&#xEAB4;</span></button>
+                </div>
+              </div>
+            </div>
+            <div class="dash" data-pane="main">
+              <div class="dash-row">
+                <div class="dash-counter"><span class="dash-counter__label">Новые клиенты</span><span class="dash-counter__value"><img src="assets/img/dash-new-clients.png" width="20" height="18" alt="">2561</span></div>
+                <div class="dash-counter"><span class="dash-counter__label">Просроченные лиды</span><span class="dash-counter__value"><img src="assets/img/dash-overdue-leads.png" width="20" height="18" alt="">2561</span></div>
+                <div class="dash-counter"><span class="dash-counter__label">Потенциальные клиенты</span><span class="dash-counter__value"><img src="assets/img/dash-clients.png" width="20" height="18" alt="">2561</span></div>
+                <div class="dash-counter"><span class="dash-counter__label">Бывшие клиенты</span><span class="dash-counter__value"><img src="assets/img/dash-clients.png" width="20" height="18" alt="">1570</span></div>
+              </div>
+
+              <div class="dash-row dash-row--widgets">
+                <div class="widget widget--h240">
+                  <div class="widget__head"><img class="widget__marker" src="assets/img/dash-marker.svg" width="3.3719" height="17.7025" alt="">Исходящие</div>
+                  <div class="widget__body w-list">
+                    <div class="w-doc">
+                      <div class="w-doc__main"><div class="w-doc__line"><span class="w-doc__name">ТД "Аргус"</span><span class="w-doc__org">Мосводоканал</span></div><div class="w-doc__sub">Заказ от покупателя 16.05.20 №6</div></div>
+                      <div class="w-doc__side"><span class="w-sum">$ 456<span class="w-sum__dec">.<small>82</small></span></span></div>
+                    </div>
+                    <div class="w-doc">
+                      <div class="w-doc__main"><div class="w-doc__line"><span class="w-doc__name">Основа</span><span class="w-doc__org">Белый ветер Цифровой</span></div><div class="w-doc__sub">Акт на сумму 1 600 р.</div></div>
+                      <div class="w-doc__side"><span class="w-sum">$ 456<span class="w-sum__dec">.<small>82</small></span></span></div>
+                    </div>
+                    <div class="w-doc">
+                      <div class="w-doc__main"><div class="w-doc__line w-doc__line--spread"><span class="w-doc__name">ОАО "Азимут"</span><span class="w-doc__org">Мили</span></div><div class="w-doc__sub">Заказ от покупателя 16.05.20</div></div>
+                      <div class="w-doc__side"><span class="w-sum">$ 456<span class="w-sum__dec">.<small>82</small></span></span></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="widget">
+                  <div class="widget__head"><img class="widget__marker" src="assets/img/dash-marker.svg" width="3.3719" height="17.7025" alt="">Компании</div>
+                  <div class="widget__body w-list w-companies">
+                    <div class="w-company"><span class="w-company__name">РЖД, ПАО</span><span class="w-company__city">Ярославль</span><span class="w-company__inn">78421847848</span></div>
+                    <div class="w-company"><span class="w-company__name">Абрау-Дюрсо, ООО</span><span class="w-company__city">Гагры</span><span class="w-company__inn">78464564565</span></div>
+                    <div class="w-company"><span class="w-company__name">Альберто, ООО</span><span class="w-company__city">Ярославль</span><span class="w-company__inn">78453543333</span></div>
+                    <div class="w-company"><span class="w-company__name">Транснефть, ПАО</span><span class="w-company__city">Москва</span><span class="w-company__inn">7825706086</span></div>
+                    <div class="w-company"><span class="w-company__name">ПАО СБЕРБАНК</span><span class="w-company__city">Москва</span><span class="w-company__inn">7707083893</span></div>
+                    <div class="w-company"><span class="w-company__name">ТК "Мегаполис", АО</span><span class="w-company__city">Булат...</span><span class="w-company__inn">7825706086</span></div>
+                    <div class="w-company"><span class="w-company__name">БАНК ВТБ (ПАО)</span><span class="w-company__city">Санкт-Пе...</span><span class="w-company__inn">7825706086</span></div>
+                    <div class="w-company"><span class="w-company__name">Новатэк, ПАО</span><span class="w-company__city">Тарко-Сале</span><span class="w-company__inn">7825706086</span></div>
+                  </div>
+                </div>
+
+                <div class="widget widget--h240">
+                  <div class="widget__body w-notices">
+                    <div class="w-notice">
+                      <div class="w-notice__title"><span class="w-notice__accent">надо сдать</span>1056</div>
+                      <div class="w-notice__item">
+                        <img src="assets/img/dash-statistics.png" width="27" height="27" alt="">
+                        <div class="w-notice__text">
+                          <div class="w-notice__head"><span class="w-notice__from">Статистика</span><span>00:12</span></div>
+                          <div>3-Ф Просроченная задолженность по ЗП за Фев’22</div>
+                          <div>‘ГБ’ г.Кувандыка, ГБУЗ</div>
+                          <div class="w-notice__link">Необходимо отправить до 1 марта</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="w-notice">
+                      <div class="w-notice__title"><span class="w-notice__accent">изменения календаря отчетности</span>72</div>
+                      <div class="w-notice__item">
+                        <img src="assets/img/dash-statistics.png" width="27" height="27" alt="">
+                        <div class="w-notice__text">
+                          <div class="w-notice__head"><span class="w-notice__from">Статистика</span><span>16 фев</span></div>
+                          <div>Форма 11 Основные фонды за 2021</div>
+                          <div class="w-notice__link">Необходимо отправить до 1 апр.</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dash-row dash-row--widgets">
+                <div class="widget widget--h225">
+                  <div class="widget__head"><img class="widget__marker" src="assets/img/dash-marker.svg" width="3.3719" height="17.7025" alt="">Входящие</div>
+                  <div class="widget__body w-incoming">
+                    <div class="w-doc">
+                      <div class="w-doc__main"><div class="w-doc__line w-doc__line--spread"><span class="w-doc__name">Основа</span><span class="w-doc__org">Ромашка</span></div><div class="w-doc__sub">Акт 31.05.21 №65, Счет на оплат..</div></div>
+                      <div class="w-doc__side"><span class="w-sum">$ 456<span class="w-sum__dec">.<small>82</small></span></span><span class="w-btn">Утверждение</span></div>
+                    </div>
+                    <div class="w-doc">
+                      <div class="w-doc__main"><div class="w-doc__line w-doc__line--spread"><span class="w-doc__name">ТД "Аргус"</span><span class="w-doc__org">Белый ветер Цифровой</span></div><div class="w-doc__sub">Акт № 4568, Счет на оплату, Фа...</div></div>
+                      <div class="w-doc__side"><span class="w-sum">$ 323<span class="w-sum__dec">.<small>82</small></span></span><span class="w-btn">Утверждение</span></div>
+                    </div>
+                    <div class="w-divider">Обработанные</div>
+                    <div class="w-doc">
+                      <div class="w-doc__main"><div class="w-doc__line w-doc__line--spread"><span class="w-doc__name">Цитроникс</span><span class="w-doc__org">Золотое Дно</span></div><div class="w-doc__sub">Скан от 2021-06-0 09-45-22.jpg, Скан от</div></div>
+                      <div class="w-doc__side"><span class="w-sum">$ 316<span class="w-sum__dec">.<small>82</small></span></span></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="w-empty">
+                  <div class="w-empty__action"><img src="assets/img/empty-cols.svg" width="24" height="24" alt="">Колонки</div>
+                  <div class="w-empty__action w-empty__action--main"><span class="ico24">&#xE6D3;</span>Виджет</div>
+                  <div class="w-empty__action"><img src="assets/img/empty-rows.svg" width="24" height="24" alt="">Строки</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Вкладка «Для менеджеров» (Figma xMQ3ZEN4AUINgwjVoxR8hS 18771:29704) -->
+            <div class="dash" data-pane="managers" hidden>
+              <div class="dash-row">
+                <div class="widget m-discount">
+                  <div class="m-discount__top">
+                    <div class="m-discount__total"><span class="m-label">Сумма скидки</span><span class="m-num">128 256</span></div>
+                    <div class="m-cols">
+                      <div class="m-col"><span class="m-label">Продажи</span><span class="m-num m-num--muted">1 024</span></div>
+                      <div class="m-col"><span class="m-label">Сумма</span><span class="m-num">512 384</span></div>
+                    </div>
+                  </div>
+                  <div class="m-chart">
+                    <div class="m-donut">
+                      <img src="assets/img/donut1-a.svg" width="57.5043" height="51.4215" alt="" style="left:44.07px;top:-.42px">
+                      <img src="assets/img/donut1-b.svg" alt="" style="left:-.42px;top:-.11px">
+                      <img src="assets/img/donut1-c.svg" alt="" style="left:-.35px;top:51.99px">
+                      <img src="assets/img/donut1-d.svg" alt="" style="left:38.32px;top:50.16px">
+                      <div class="m-donut__center"><span class="m-label">Скидка</span><span class="m-num">51.2%</span></div>
+                    </div>
+                    <div class="m-legend">
+                      <div class="m-legend__row"><span class="m-legend__name" style="--c:#d9d9d9">5% постоянные покупатели</span><span class="m-legend__v m-legend__v--muted">141</span><span class="m-legend__v">58 204</span></div>
+                      <div class="m-legend__row"><span class="m-legend__name" style="--c:#7cb5ec">10 VIP</span><span class="m-legend__v m-legend__v--muted">213</span><span class="m-legend__v">34 680</span></div>
+                      <div class="m-legend__row"><span class="m-legend__name" style="--c:#ff9c6c">20% в день</span><span class="m-legend__v m-legend__v--muted">96</span><span class="m-legend__v">26 998</span></div>
+                      <div class="m-legend__row"><span class="m-legend__name" style="--c:#555bb2">Новогодние праздники</span><span class="m-legend__v m-legend__v--muted">120</span><span class="m-legend__v">14 654</span></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="widget m-cats">
+                  <div class="m-cat">
+                    <img src="assets/img/mgr-auto.png" width="32" height="32" alt="">
+                    <div class="m-cat__body"><div class="m-cat__title">Автотовары</div>
+                      <div class="m-cat__tags"><span>Автоаксессуары</span><span>Автозапчасти</span><span>Автомобильные масла</span><span>Автохимия и автокосметика</span><span>Автоэлектроника</span></div></div>
+                  </div>
+                  <div class="m-cat">
+                    <img src="assets/img/mgr-alco.png" width="32" height="32" alt="">
+                    <div class="m-cat__body"><div class="m-cat__title">Алкогольная продукция</div>
+                      <div class="m-cat__tags"><span>Бренди</span><span>Вина и винные напитки</span><span>Вина игристые</span><span>Виски</span><span>Водка</span><span>Граппа</span><span>Джин</span><span>Другие напитки</span></div></div>
+                  </div>
+                  <div class="m-cat">
+                    <img src="assets/img/mgr-appliances.png" width="32" height="32" alt="">
+                    <div class="m-cat__body"><div class="m-cat__title">Бытовая техника</div>
+                      <div class="m-cat__tags"><span>Встраиваемая техника</span><span>Климатическая техника</span><span>Техника для дома</span><span>Техника для кухни</span></div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dash-row">
+                <div class="widget">
+                  <div class="m-head"><img class="widget__marker" src="assets/img/dash-marker.svg" width="3.3719" height="17.7025" alt="">Компании</div>
+                  <div class="widget__body m-companies">
+                    <div class="m-company"><span class="m-company__name">РЖД, ПАО</span><span class="m-company__city">Ярославль</span><span class="m-company__inn">78421847848</span></div>
+                    <div class="m-company"><span class="m-company__name">Абрау-Дюрсо, ООО</span><span class="m-company__city">Гагры</span><span class="m-company__inn">78464564565</span></div>
+                    <div class="m-company"><span class="m-company__name">Альберто, ООО</span><span class="m-company__city">Ярославль</span><span class="m-company__inn">78453543333</span></div>
+                    <div class="m-company"><span class="m-company__name">Транснефть, ПАО</span><span class="m-company__city">Москва</span><span class="m-company__inn">7825706086</span></div>
+                    <div class="m-company"><span class="m-company__name">ПАО СБЕРБАНК</span><span class="m-company__city">Москва</span><span class="m-company__inn">7707083893</span></div>
+                    <div class="m-company"><span class="m-company__name">ТК "Мегаполис", АО</span><span class="m-company__city">Булат...</span><span class="m-company__inn">7825706086</span></div>
+                    <div class="m-company"><span class="m-company__name">БАНК ВТБ (ПАО)</span><span class="m-company__city">Санкт-Пе...</span><span class="m-company__inn">7825706086</span></div>
+                    <div class="m-company"><span class="m-company__name">Новатэк, ПАО</span><span class="m-company__city">Тарко-Сале</span><span class="m-company__inn">7825706086</span></div>
+                  </div>
+                </div>
+
+                <div class="widget">
+                  <div class="m-head"><img class="widget__marker" src="assets/img/dash-marker.svg" width="3.3719" height="17.7025" alt="">Компании</div>
+                  <div class="widget__body">
+                    <div class="m-chart m-chart--right">
+                      <div class="m-legend m-legend--plain">
+                        <div class="m-legend__row"><span class="m-legend__name" style="--c:#0c94ff">СБИС</span><span class="m-legend__v">18 204</span></div>
+                        <div class="m-legend__row"><span class="m-legend__name" style="--c:#00c5a8">Контур</span><span class="m-legend__v">845</span></div>
+                        <div class="m-legend__row"><span class="m-legend__name" style="--c:#fec63f">Другие</span><span class="m-legend__v">945</span></div>
+                        <div class="m-legend__row"><span class="m-legend__name" style="--c:#999">Не подключен</span><span class="m-legend__v">2 856</span></div>
+                      </div>
+                      <div class="m-donut">
+                        <img src="assets/img/donut2-a.svg" alt="" style="left:44.07px;top:-.42px">
+                        <img src="assets/img/donut2-b.svg" alt="" style="left:-.42px;top:-.11px">
+                        <img src="assets/img/donut2-c.svg" alt="" style="left:-.35px;top:51.99px">
+                        <img src="assets/img/donut2-d.svg" alt="" style="left:38.32px;top:50.16px">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Новая вкладка: пустая ячейка конструктора на всю ширину (Figma 18797:65819) -->
+            <div class="dash" data-pane="empty" hidden>
+              <div class="w-empty w-empty--tab">
+                <div class="w-empty__action"><img src="assets/img/empty-cols.svg" width="24" height="24" alt="">Колонки</div>
+                <div class="w-empty__action w-empty__action--main"><span class="ico24">&#xE6D3;</span>Виджет</div>
+                <div class="w-empty__action"><img src="assets/img/empty-rows.svg" width="24" height="24" alt="">Строки</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Скелетон страницы раздела -->
+          <section class="page page--skeleton" id="pageSkeleton" hidden>
+            <div class="pg-head">
+              <div class="sk-pills"><span class="sk-pill sk-pill--on"></span><span class="sk-pill"></span><span class="sk-pill"></span></div>
+              <span class="sk-search"></span>
+              <span class="sk-bar sk-bar--right"></span>
+            </div>
+            <div class="pg-tabs">
+              <span class="pg-tab is-active"><span class="sk-bar sk-bar--tab sk-bar--accent"></span></span>
+              <span class="pg-tab"><span class="sk-bar sk-bar--tab"></span></span>
+              <span class="pg-tab"><span class="sk-bar sk-bar--tab"></span></span>
+            </div>
+            <div class="sk-registry">
+              <div class="sk-filters"><span style="--w:64px"></span><span style="--w:100px"></span><span style="--w:140px"></span><span style="--w:100px"></span><span style="--w:140px"></span></div>
+              <div class="sk-list" id="skList"></div>
+            </div>
+          </section>
+        </div>
+        <!-- Информеры и ЦУ (Figma xMQ3ZEN4AUINgwjVoxR8hS: 16106:372076 и 18399:26470) — одинаковые на всех страницах -->
+        <div class="content__side">
+          <div class="informers">
+            <div class="informers__top">
+              <span class="informers__fio">СС<img src="assets/img/cu/fio-dot.svg" width="5.058" height="5.058" alt=""></span>
+              <button class="informers__btn" type="button" id="infApps" aria-label="Настроить интерфейс"><span class="ico">&#xE747;</span><span class="click-pin" aria-hidden="true"><img src="assets/img/click-cursor.svg" width="16" height="16" alt=""></span></button>
+              <!-- Все сценарии конструктора и «Плюс в тулбаре»: плюс вместо кнопки выше (Figma 16065:104154; кнопка pale 24 — nuC4KFMiS36uDWDUp9wKGl 17890:4318), открывает меню «+ вкладка» -->
+              <button class="inf-plus" type="button" id="infPlus" aria-label="Добавить вкладку"><span class="ico">&#xEB25;</span></button>
+              <!-- сценарий «+вкладка в тулбаре»: та же ссылка, что в шапке дашборда, вертикально под кнопкой; открывает меню «+ вкладка» -->
+              <button class="pg-link inf-link" type="button" id="infAddTab"><span class="ico">&#xEB25;</span><span class="pg-link__text">вкладка</span></button>
+              <!-- сценарий «Чипса в тулбаре»: чипса «вкладка» вертикально, как ссылка выше; после добавления вкладки пропадает -->
+              <button class="pg-chip inf-chip" type="button" id="infChipTab">вкладка</button>
+            </div>
+            <div class="informers__bottom">
+              <span class="informers__shot"><img src="assets/img/cu/informers-sprite.png" style="top: -2231.25%" alt=""></span>
+              <span class="informers__shot"><img src="assets/img/cu/informers-sprite.png" style="top: -2381.25%" alt=""></span>
+              <span class="informers__help"><img src="assets/img/cu/help.svg" width="10.125" height="13.5" alt=""></span>
+            </div>
+          </div>
+          <div class="cu">
+            <section class="cu-w cu-w--card cu-best">
+              <div class="cu-best__head"><b>Лучшие сотрудники</b><span class="cu-date">25 июл</span></div>
+              <div class="cu-best__note">Победитель! Так держать!</div>
+              <div class="cu-best__podium">
+                <div class="cu-best__place"><span class="cu-best__ava"><img src="assets/img/cu/top-2.png" width="38.777" height="38.777" alt=""></span><span class="cu-best__num">2</span><span class="cu-best__name">Соловьева Татьяна</span></div>
+                <div class="cu-best__place cu-best__place--first"><span class="cu-best__ava"><img src="assets/img/cu/top-1.png" width="52.264" height="52.264" alt=""></span><span class="cu-best__num">1</span><span class="cu-best__name">Данилов Леонид</span></div>
+                <div class="cu-best__place"><span class="cu-best__ava"><img src="assets/img/cu/top-3.png" width="38.777" height="38.777" alt=""></span><span class="cu-best__num">3</span><span class="cu-best__name">Климова Елена</span></div>
+              </div>
+              <div class="cu-best__list">
+                <div class="cu-best__row"><span class="cu-best__pos">4</span><span class="cu-best__who"><img src="assets/img/cu/list-4.png" width="13.488" height="13.488" alt="">Сергей Иванов</span><span>25 000</span></div>
+                <div class="cu-best__row"><span class="cu-best__pos">5</span><span class="cu-best__who"><img src="assets/img/cu/list-5.png" width="13.488" height="13.488" alt="">Анастасия Волкова</span><span>20 000</span></div>
+                <div class="cu-best__row"><span class="cu-best__pos">6</span><span class="cu-best__who"><img src="assets/img/cu/list-6.png" width="13.488" height="13.488" alt="">Анна Романова</span><span>16 667</span></div>
+              </div>
+            </section>
+            <section class="cu-w cu-feed">
+              <div class="cu-feed__group">
+                <div class="cu-feed__title"><span class="cu-accent">задачи</span><span class="cu-muted">3</span></div>
+                <div class="cu-feed__item">
+                  <span class="cu-feed__pic"><img src="assets/img/cu/task-petrova.png" alt=""></span>
+                  <div class="cu-feed__body cu-feed__body--task">
+                    <div class="cu-feed__head"><span class="cu-feed__from">Ольга Петрова</span><span class="cu-date">2 июн</span></div>
+                    <div class="cu-feed__text cu-feed__text--2">Поручение: Прошу отобразить на макете следующие механики: при входе в приложение отображается приветственная заглушка</div>
+                    <div class="cu-feed__foot"><span class="cu-date">1 июл</span><span class="cu-link">Выполнение</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="cu-feed__group">
+                <div class="cu-feed__title"><span class="cu-accent">сообщения</span><span class="cu-muted">52</span></div>
+                <div class="cu-feed__item">
+                  <span class="cu-feed__pic"><img src="assets/img/cu/msg-smirnov.png" alt=""><img class="cu-feed__dot" src="assets/img/cu/dot-red.svg" width="6.744" height="6.744" alt=""></span>
+                  <div class="cu-feed__body">
+                    <div class="cu-feed__head"><span class="cu-feed__from">Алексей Смирнов</span><span class="cu-date">14:21</span></div>
+                    <div class="cu-feed__text cu-feed__text--2">Привет! Этот макет не актуальный, нужно обсудить правки.</div>
+                  </div>
+                </div>
+                <div class="cu-feed__item">
+                  <span class="cu-feed__pic"><img src="assets/img/cu/msg-kuptsova.png" alt=""><img class="cu-feed__dot" src="assets/img/cu/dot-grey.svg" width="6.744" height="6.744" alt=""></span>
+                  <div class="cu-feed__body">
+                    <div class="cu-feed__head"><span class="cu-feed__from">Ирина Купцова</span><span class="cu-date">10 июн</span></div>
+                    <div class="cu-feed__text cu-feed__text--line cu-muted">Поручение 01.06.22 от Петрова К.А.: Прошу</div>
+                    <div class="cu-feed__text cu-feed__text--line">Привет, свяжись со мной по этой задаче.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="cu-feed__group cu-feed__group--last">
+                <div class="cu-feed__title"><span class="cu-accent">уведомления</span><span class="cu-muted">1</span></div>
+                <div class="cu-feed__item">
+                  <span class="cu-feed__pic"><img src="assets/img/cu/ntf-sidorov.png" alt=""><img class="cu-feed__dot" src="assets/img/cu/dot-red2.svg" width="6.744" height="6.744" alt=""></span>
+                  <div class="cu-feed__body cu-feed__body--call">
+                    <div>
+                      <div class="cu-feed__head"><span class="cu-feed__from">Владимир Сидоров</span><span class="cu-date">25 мая</span></div>
+                      <div class="cu-feed__text cu-muted">Доступен для звонка</div>
+                    </div>
+                    <div class="cu-feed__foot"><span class="cu-btn">Позвонить</span></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="cu-w cu-rating">
+              <div class="cu-w__head"><span class="cu-w__marker"></span><b class="cu-w__title">Рейтинг</b></div>
+              <div class="cu-rating__list">
+                <div class="cu-rating__person"><img src="assets/img/cu/rate-danilov.png" alt=""><span>Данилов Леонид</span></div>
+                <div class="cu-rating__person"><img src="assets/img/cu/rate-solovieva.png" alt=""><span>Соловьева Татьяна</span></div>
+                <div class="cu-rating__person"><img src="assets/img/cu/rate-klimova.png" alt=""><span>Климова Елена</span></div>
+              </div>
+            </section>
+            <section class="cu-w cu-events">
+              <div class="cu-w__head">
+                <span class="cu-w__marker"></span><span class="cu-events__title">События по сотрудникам <span>130</span></span>
+                <span class="cu-date cu-events__date">1 авг</span>
+              </div>
+              <div class="cu-events__item">
+                <img class="cu-events__photo" src="assets/img/cu/event-ivanov.png" alt="">
+                <div class="cu-events__body">
+                  <div class="cu-events__info"><span class="cu-events__name">Сергей Иванов</span><span class="cu-muted">Отдел продаж</span><span class="cu-muted">Менеджер</span></div>
+                  <div class="cu-events__act"><span class="cu-link">Поздравить</span><img src="assets/img/cu/balloons.svg" width="20.231" height="20.231" alt=""></div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- Мобильный вид (кнопка «мобилка» в шапке; Figma xMQ3ZEN4AUINgwjVoxR8hS 18851:22733, скелетон 18871:38216):
+             экран 400 по центру, страница — картинка, внизу ННП (18867:31160), по «Меню» — аккордеон поверх (AccordeonMobile 18867:32583) -->
+        <div class="mob" id="mob" hidden>
+          <div class="mob__screen">
+            <img class="mob__page" id="mobPage" src="assets/img/mobile/main.png" width="400" height="791" alt="">
+            <!-- логотип шапки Главной (largeHeader 18867:36647) — живой: та же птичка, что в аккордеоне, меняется окном «Логотип» -->
+            <div class="mob-logo" id="mobLogo"><span class="acc-bird mob-logo__bird"><span class="ico24">&#xE9E2;</span></span><span class="mob-logo__saby"></span></div>
+            <nav class="nnp" aria-label="Нижняя навигационная панель">
+              <button class="nnp__item" type="button" id="nnpMenu"><span class="nnp__icon"><span class="nnp__glyph">&#xE91F;</span></span><span class="nnp__text">Меню</span></button>
+              <div class="nnp__list" id="nnpList"></div>
+              <span class="nnp__shadow" aria-hidden="true"></span>
+            </nav>
+            <div class="mob-acc" id="mobAcc" hidden>
+              <div class="mob-acc__veil" id="mobVeil"></div>
+              <nav class="mob-acc__panel" aria-label="Навигация приложения">
+                <div class="mob-acc__head">
+                  <div class="mob-acc__logo"><span class="acc-bird mob-acc__bird"><span class="ico24">&#xE9E2;</span></span><span class="mob-acc__saby"></span></div>
+                  <span class="mob-acc__group">предприятие</span>
+                </div>
+                <ul class="mob-acc__list" id="mobAccList"></ul>
+              </nav>
+            </div>
+          </div>
+          <div class="mob-cu"><span class="mob-cu__text">Центр уведомлений</span></div>
+        </div>
+      </main>
+
+      <!-- Правая панель -->
+      <aside class="right-panel">
+        <div class="right-panel__cmds">
+          <button class="rp-btn rp-btn--accent" type="button" aria-label="Магазин" data-rp="shop"><span class="ico24">&#xEADD;</span><span class="click-pin" aria-hidden="true"><img src="assets/img/click-cursor.svg" width="16" height="16" alt=""></span></button>
+          <button class="rp-btn" type="button" aria-label="Данные" data-rp="data"><span class="rp-svg rp-svg--data"></span></button>
+          <button class="rp-btn" type="button" aria-label="Слои" data-rp="layers"><span class="rp-svg rp-svg--layers"></span></button>
+          <button class="rp-btn" type="button" aria-label="Фильтр" data-rp="filter"><span class="ico24">&#xE94C;</span></button>
+          <!-- лупа в макете (Figma 16041:45395) — с толстой ручкой, как в cbuc-icons: в нашем cbuc-icons24 она другая и крупнее -->
+          <button class="rp-btn" type="button" aria-label="Поиск" data-rp="search"><span class="ico ico--20">&#xEAA7;</span></button>
+          <button class="rp-btn" type="button" aria-label="Настройки" data-rp="settings"><span class="ico24">&#xEAA9;</span></button>
+        </div>
+        <button class="rp-more" type="button" id="rpMore" aria-label="Ещё"><span class="ico ico--20">&#xE9D9;</span></button>
+        <div class="right-panel__spacer"></div>
+        <button class="rp-help" type="button" aria-label="Помощь"><img src="assets/img/help.svg" width="12" height="16" alt=""></button>
+      </aside>
+
+      <!-- Окна правой панели: открываются слева от колонки, верх — по своей иконке, высота — по содержимому («Магазин» — на всю высоту) -->
+      <section class="rp-win rp-win--shop" id="rp-shop" data-fit="full" hidden aria-label="Магазин">
+        <div class="rp-win__head">
+          <span class="rp-win__title">Виджеты</span><span class="rp-plus"><span class="ico">&#xEADD;</span></span>
+          <span class="rp-filter-ico ico24">&#xE94C;</span><span class="rp-find rp-find--shop">Найти</span>
+        </div>
+        <div class="rp-shop">
+          <div class="rp-cats" id="rpCats"></div>
+          <div class="rp-shop__pv" id="rpShopPv"><img class="rp-shop__preview" src="assets/img/shop-preview.png" width="350" height="633" alt=""><div class="rp-shop__reports"><div class="rp-sw__title">Отчеты</div><div class="rp-sw__desc">Контролируйте движение товара, выручку и остатки на складах</div><div class="rp-sw__pv"><img src="assets/img/shop-reports.png" alt=""></div></div></div>
+        </div>
+      </section>
+
+      <section class="rp-win" id="rp-data" hidden aria-label="Данные">
+        <div class="rp-win__head"><span class="rp-win__title">Данные</span><span class="rp-find">Найти</span></div>
+        <div class="rp-fields">
+          <div class="rp-group rp-group--open">
+            <div class="rp-field rp-field--obj"><span class="rp-field__name">Аккаунт<span class="ico rp-field__arrow">&#xEB8A;</span></span><span class="rp-field__type">Аккаунт</span></div>
+            <div class="rp-field rp-field--child"><span class="rp-field__name">Тип<span class="ico rp-field__arrow">&#xEB89;</span></span><span class="rp-field__type">Строка</span></div>
+            <div class="rp-field rp-field--child rp-field--leaf"><span class="rp-field__name">Номер лицевого счета</span><span class="rp-field__type">Число</span></div>
+            <div class="rp-field rp-field--child rp-field--leaf"><span class="rp-field__name">Название аккаунта</span><span class="rp-field__type">Строка</span></div>
+            <div class="rp-field rp-field--child"><span class="rp-field__name">Операторы поддержки<span class="ico rp-field__arrow">&#xEB89;</span></span><span class="rp-field__type">Операторы</span></div>
+            <div class="rp-field rp-field--child"><span class="rp-field__name">Чаты<span class="ico rp-field__arrow">&#xEB89;</span></span><span class="rp-field__type">Чаты</span></div>
+            <div class="rp-field rp-field--child"><span class="rp-field__name">Звонки<span class="ico rp-field__arrow">&#xEB89;</span></span><span class="rp-field__type">Звонки</span></div>
+          </div>
+          <div class="rp-group"><div class="rp-field rp-field--obj"><span class="rp-field__name">Пользователь<span class="ico rp-field__arrow">&#xEB89;</span></span><span class="rp-field__type">Пользователь</span></div></div>
+          <div class="rp-group"><div class="rp-field rp-field--obj"><span class="rp-field__name">Контрагент<span class="ico rp-field__arrow">&#xEB89;</span></span><span class="rp-field__type">Контрагент</span></div></div>
+          <div class="rp-group"><div class="rp-field rp-field--obj"><span class="rp-field__name">Сотрудник<span class="ico rp-field__arrow">&#xEB89;</span></span><span class="rp-field__type">Сотрудник</span></div></div>
+        </div>
+      </section>
+
+      <section class="rp-win" id="rp-filter" hidden aria-label="Фильтр">
+        <div class="rp-win__head"><span class="rp-win__title">Глобальный фильтр</span></div>
+        <div class="rp-chips">
+          <div class="rp-add rp-add--filter">
+            <div class="rp-add__label">Можно добавить</div>
+            <div class="rp-add__list">
+              <button class="rp-add__item" type="button">Организации</button>
+              <button class="rp-add__item" type="button">Сотрудники и подразделения</button>
+              <button class="rp-add__item" type="button">Период</button>
+              <button class="rp-add__item" type="button">Линии</button>
+              <button class="rp-add__item" type="button">Тип отклика</button>
+              <button class="rp-add__item" type="button">Тип продаж</button>
+              <button class="rp-add__item" type="button">Обороты</button>
+              <button class="rp-add__item" type="button">Обороты</button>
+              <button class="rp-add__item" type="button">Партнеры</button>
+              <button class="rp-add__item" type="button">Источники</button>
+              <button class="rp-add__item" type="button">Сервисы</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="rp-win" id="rp-layers" hidden aria-label="Слои">
+        <div class="rp-win__head"><span class="rp-win__title">Слои</span></div>
+        <div class="rp-list rp-layers">
+          <div class="rp-row"><span class="rp-row__lead"></span><span class="ico rp-wico">&#xEBB9;</span><span class="rp-row__name">Вкладки</span><span class="rp-row__cmds"><span class="ico24 rp-row__eye">&#xE651;</span><span class="rp-row__del"><span class="ico">&#xEB72;</span></span></span></div>
+          <div class="rp-row"><span class="rp-row__lead"><span class="ico rp-arrow">&#xEB89;</span></span><span class="ico rp-wico">&#xEBB9;</span><span class="rp-row__name">Виджет 2</span><span class="rp-row__cmds"><span class="ico24 rp-row__eye">&#xE651;</span><span class="rp-row__del"><span class="ico">&#xEB72;</span></span></span></div>
+          <div class="rp-row"><span class="rp-row__lead"><span class="ico rp-arrow">&#xEB89;</span></span><span class="ico rp-wico">&#xEBB9;</span><span class="rp-row__name">Виджет 3</span><span class="rp-row__cmds"><span class="ico24 rp-row__eye">&#xE651;</span><span class="rp-row__del"><span class="ico">&#xEB72;</span></span></span></div>
+          <div class="rp-row"><span class="rp-row__lead"></span><span class="ico rp-wico">&#xEBB9;</span><span class="rp-row__name">Виджет 4</span><span class="rp-row__cmds"><span class="ico24 rp-row__eye">&#xE651;</span><span class="rp-row__del"><span class="ico">&#xEB72;</span></span></span></div>
+        </div>
+      </section>
+
+      <section class="rp-win" id="rp-search" hidden aria-label="Поиск">
+        <div class="rp-win__head"><span class="rp-win__title">Поиск</span></div>
+        <div class="rp-chips">
+          <div class="rp-chip"><span class="rp-chip__name">Компании</span><button class="rp-chip__x" type="button" aria-label="Убрать"><img src="assets/img/close-popup.svg" width="28" height="28" alt=""></button></div>
+          <div class="rp-chip"><span class="rp-chip__name">Новости</span><button class="rp-chip__x" type="button" aria-label="Убрать"><img src="assets/img/close-popup.svg" width="28" height="28" alt=""></button></div>
+          <div class="rp-chip"><span class="rp-chip__name">Сотрудники</span><button class="rp-chip__x" type="button" aria-label="Убрать"><img src="assets/img/close-popup.svg" width="28" height="28" alt=""></button></div>
+          <div class="rp-add">
+            <div class="rp-add__label">Можно добавить</div>
+            <div class="rp-add__list">
+              <button class="rp-add__item" type="button">Вакансии</button>
+              <button class="rp-add__item" type="button">Мои курсы</button>
+              <button class="rp-add__item" type="button">Доступные курсы</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="rp-win" id="rp-settings" hidden aria-label="Настройки">
+        <div class="rp-win__head"><span class="rp-win__title">Настройки</span></div>
+        <div class="rp-cards">
+          <div class="rp-card rp-card--informers">
+            <div class="rp-prop"><span class="rp-prop__label rp-prop__label--82">Информеры</span><button class="rp-switch is-on" type="button" id="rpInformers" role="switch" aria-checked="true" aria-label="Информеры"></button></div>
+          </div>
+          <div class="rp-card">
+            <div class="rp-card__title">Центр уведомлений</div>
+            <div class="rp-props">
+              <div class="rp-prop"><span class="rp-prop__label">Монитор</span><button class="rp-link" type="button">На странице</button></div>
+              <div class="rp-prop"><span class="rp-prop__label">Ноутбук</span><button class="rp-link" type="button">На странице</button></div>
+              <div class="rp-prop"><span class="rp-prop__label">Планшет</span><button class="rp-link" type="button">В окне</button></div>
+            </div>
+          </div>
+          <div class="rp-card">
+            <div class="rp-card__title">Отступы</div>
+            <div class="rp-props">
+              <div class="rp-prop"><span class="rp-prop__label rp-prop__label--soft">Между виджетами</span><span class="rp-gap"><img src="assets/img/gap-between.svg" width="12" height="12" alt=""><span class="rp-gap__num">8</span></span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Выпадающий список «На странице / В окне» (окно «Настройки») -->
+      <!-- Меню «⋮» правой панели (Figma vUgZuefpqUuaG2j0DDnEZf 16550:155703): пункты только с ховером, без действий; крестик — поверх «⋮» -->
+      <div class="mw-menu rp-more-menu" id="rpMoreMenu" hidden>
+        <div class="mw-menu__list">
+          <div class="mw-menu__item rp-more-item"><span class="ico24">&#xE9DD;</span><span class="mw-menu__text">Сохранить на диск</span></div>
+          <div class="mw-menu__item rp-more-item rp-more-item--admin"><span class="ico24">&#xE669;</span><span class="mw-menu__text">Копировать</span></div>
+          <div class="mw-menu__item rp-more-item"><span class="ico24">&#xE628;</span><span class="mw-menu__text">Скачать</span></div>
+          <div class="mw-menu__item rp-more-item rp-more-item--admin"><span class="ico24">&#xEA30;</span><span class="mw-menu__text">Загрузить</span></div>
+          <div class="mw-menu__item rp-more-item rp-more-item--admin"><span class="ico24">&#xE631;</span><span class="mw-menu__text">Опубликовать</span><span class="rp-more-item__arrow"><span class="ico">&#xE9AB;</span></span></div>
+          <div class="mw-menu__item rp-more-item"><span class="ico24">&#xE67D;</span><span class="mw-menu__text">История изменений</span></div>
+        </div>
+        <button class="mw-menu__close" type="button" id="rpMoreClose" aria-label="Закрыть"><img src="assets/img/close-menu.svg" width="12" height="12" alt=""></button>
+      </div>
+      <!-- Меню «⋯» тулбара пункта в редакторе аккордеона (Figma 9eLwMJLQCwT0xHKviN2j1P 18588:28495): в 8 под тулбаром,
+           иконки пунктов — под «⋯»; «Закрепить снизу» / «Открепить», «Настроить», «Удалить» -->
+      <div class="mw-menu acc-more ae-more" id="aeMore" hidden>
+        <div class="mw-menu__list">
+          <button class="mw-menu__item acc-more__item" type="button" data-act="pin"><span class="ico24" id="aeMorePinIco">&#xE97C;</span><span class="mw-menu__text" id="aeMorePinText">Закрепить снизу</span></button>
+          <button class="mw-menu__item acc-more__item" type="button" data-act="settings"><span class="ico24">&#xE75D;</span><span class="mw-menu__text">Настроить</span></button>
+          <button class="mw-menu__item acc-more__item" type="button" data-act="delete"><span class="ico24 acc-more__danger">&#xEB72;</span><span class="mw-menu__text">Удалить</span></button>
+        </div>
+        <button class="mw-menu__close" type="button" id="aeMoreClose" aria-label="Закрыть"><img src="assets/img/close-menu.svg" width="12" height="12" alt=""></button>
+      </div>
+      <!-- Меню «⋮» пункта аккордеона (Figma xMQ3ZEN4AUINgwjVoxR8hS 19401:31603): крестик — поверх «⋮»;
+           «Переместить» — только ховер, по нему подменю «Вверх / Вниз / В другой раздел» (19404:32415) -->
+      <div class="mw-menu acc-more" id="accMore" hidden>
+        <div class="mw-menu__list">
+          <button class="mw-menu__item acc-more__item" type="button" data-act="edit"><span class="ico24">&#xE660;</span><span class="mw-menu__text">Настроить подменю</span></button>
+          <button class="mw-menu__item acc-more__item" type="button" data-act="rename"><span class="ico24">&#xE698;</span><span class="mw-menu__text">Переименовать</span></button>
+          <div class="mw-menu__item acc-more__item acc-more__move"><span class="ico24">&#xE63F;</span><span class="mw-menu__text">Переместить</span><span class="acc-more__arrow"><span class="ico">&#xE9AB;</span></span>
+            <div class="acc-more__sub">
+              <div class="mw-menu__item acc-more__item"><span class="ico24">&#xE672;</span><span class="mw-menu__text">Вверх</span></div>
+              <div class="mw-menu__item acc-more__item"><span class="ico24">&#xE673;</span><span class="mw-menu__text">Вниз</span></div>
+              <div class="mw-menu__item acc-more__item"><span class="ico24">&#xE63F;</span><span class="mw-menu__text">В другой раздел</span></div>
+            </div>
+          </div>
+          <button class="mw-menu__item acc-more__item" type="button" data-act="delete"><span class="ico24 acc-more__danger">&#xEB72;</span><span class="mw-menu__text">Удалить</span></button>
+        </div>
+        <button class="mw-menu__close" type="button" id="accMoreClose" aria-label="Закрыть"><img src="assets/img/close-menu.svg" width="12" height="12" alt=""></button>
+      </div>
+      <div class="mw-menu rp-menu" id="rpMenu" hidden>
+        <div class="mw-menu__list" id="rpMenuList"></div>
+        <button class="mw-menu__close" type="button" id="rpMenuClose" aria-label="Закрыть"><img src="assets/img/close-menu.svg" width="12" height="12" alt=""></button>
+      </div>
+
+      <!-- Слой для подменю -->
+      <div class="submenu-layer" id="submenuLayer"></div>
+
+      <!-- Окно настроек «Меню» -->
+      <section class="set-win" id="menuWin" hidden aria-label="Меню">
+        <div class="set-win__head">
+          <span class="set-win__title">Меню</span>
+          <div class="set-win__cmds">
+            <button class="sw-reset" type="button" id="mwReset" aria-label="Сбросить настройки" disabled><span class="ico24">&#xE629;</span></button>
+            <button class="sw-done" type="button" id="mwDone" aria-label="Сохранить и закрыть"><span class="ico">&#xE75E;</span></button>
+            <button class="sw-close" type="button" id="mwClose" aria-label="Закрыть"><span class="ico24">&#xE66C;</span></button>
+          </div>
+        </div>
+        <div class="set-win__body">
+          <div class="mw-prop">
+            <span class="mw-prop__name">Состояние панели</span>
+            <button class="mw-link" type="button" id="mwNarrowLink"></button>
+          </div>
+          <div class="mw-prop">
+            <span class="mw-prop__name">Открывать подменю</span>
+            <div class="mw-radios" id="mwTrigger">
+              <button class="mw-radio" type="button" data-trigger="hover"><span class="mw-radio__box"></span><span class="mw-radio__text">По наведению</span></button>
+              <button class="mw-radio" type="button" data-trigger="click"><span class="mw-radio__box"></span><span class="mw-radio__text">По клику</span></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Выпадающий список «Состояние панели» -->
+      <!-- Меню «Язык» (Figma 16065:176561): только ховеры, выбор не меняет язык; строка выбранного языка — на высоте кнопки, ✕ меню — поверх ✕ шапки -->
+      <div class="mw-menu lang-menu" id="langMenu" hidden>
+        <div class="mw-menu__list" id="langMenuList"></div>
+        <button class="mw-menu__close" type="button" id="langMenuClose" aria-label="Закрыть"><img src="assets/img/close-menu.svg" width="12" height="12" alt=""></button>
+      </div>
+      <div class="mw-menu" id="mwMenu" hidden>
+        <div class="mw-menu__list" id="mwMenuList"></div>
+        <button class="mw-menu__close" type="button" id="mwMenuClose" aria-label="Закрыть"><img src="assets/img/close-menu.svg" width="12" height="12" alt=""></button>
+      </div>
+
+      <!-- Окно настроек «Логотип» -->
+      <section class="set-win" id="logoWin" hidden aria-label="Логотип">
+        <div class="set-win__head">
+          <span class="set-win__title">Логотип</span>
+          <div class="set-win__cmds">
+            <button class="sw-reset" type="button" id="lwReset" aria-label="Сбросить настройки" disabled><span class="ico24">&#xE629;</span></button>
+            <button class="sw-done" type="button" aria-label="Сохранить и закрыть"><span class="ico">&#xE75E;</span></button>
+            <button class="sw-close" type="button" aria-label="Закрыть"><span class="ico24">&#xE66C;</span></button>
+          </div>
+        </div>
+        <div class="lw-blocks">
+          <div class="set-win__body">
+            <p class="lw-hint"><span class="lw-link">Выберите</span> логотип из коллекции или <span class="lw-link">сделайте текстовый логотип</span></p>
+            <div class="lw-preview">
+              <button class="lw-bird" type="button" id="lwBird" aria-label="Загрузить иконку">
+                <span class="lw-bird__logo"></span>
+                <span class="lw-bird__clip ico">&#xE671;</span>
+              </button>
+              <span class="lw-preview__text" aria-label="saby"><svg class="lw-preview__svg" width="48.2" height="23.82" viewBox="0 0 48.2 23.82" aria-hidden="true"><path fill="currentColor" d="M0.720 14.200C1.040 16.580 3.260 18.120 6.360 18.120C9.300 18.120 11.220 16.880 11.220 15C11.220 13.120 9.900 12.260 6.160 11.700C3.460 11.300 2.700 10.920 2.700 9.960C2.700 8.980 3.880 8.320 5.620 8.320C7.440 8.320 8.800 9.220 9.200 10.660L10.720 10.360C10.360 8.400 8.160 6.920 5.620 6.920C2.920 6.920 1.120 8.180 1.120 10.020C1.120 11.780 2.360 12.600 6.120 13.120C8.680 13.460 9.620 13.980 9.620 15.020C9.620 16.080 8.380 16.720 6.360 16.720C3.980 16.720 2.580 15.720 2.240 13.860L0.720 14.200ZM12.860 14.980C12.860 16.920 14.320 18.120 16.780 18.120C18.460 18.120 20 17.460 20.720 16.480L20.760 16.480L20.760 17.820L22.340 17.820L22.340 10.380C22.340 8.280 20.620 6.920 17.920 6.920C16.580 6.920 15.460 7.260 14.560 7.920C13.660 8.580 13.120 9.460 12.920 10.560L14.500 10.900C14.820 9.300 16.080 8.360 17.920 8.360C19.540 8.360 20.580 9.020 20.580 10.040C20.580 10.860 19.800 11.280 17.540 11.660C14.160 12.200 12.860 13.120 12.860 14.980ZM20.700 14.120C20.700 15.460 19 16.660 17.120 16.660C15.360 16.660 14.520 16.120 14.520 14.980C14.520 13.940 15.460 13.380 17.840 12.980C19.600 12.680 20.360 12.380 20.660 11.840L20.700 11.840ZM26.480 16.500C27.340 17.520 28.800 18.120 30.460 18.120C33.760 18.120 36.140 15.800 36.140 12.520C36.140 9.340 33.740 6.920 30.560 6.920C28.900 6.920 27.420 7.520 26.540 8.560L26.500 8.560L26.500 3.220L24.860 3.220L24.860 17.820L26.440 17.820L26.440 16.500ZM34.500 12.520C34.500 15.060 32.900 16.680 30.360 16.680C28.200 16.680 26.500 15.180 26.500 13.320L26.500 11.720C26.500 9.860 28.220 8.360 30.460 8.360C32.880 8.360 34.500 10 34.500 12.520ZM38.600 22.320L40.460 22.320L48.000 7.220L46.120 7.220L42.260 15.180L42.220 15.180L38.340 7.220L36.460 7.220L41.320 16.900Z"/></svg></span>
+            </div>
+          </div>
+          <div class="lw-actions">
+            <div class="lw-actions__head">
+              <span class="lw-actions__title">Действия по плюсу</span>
+              <span class="lw-round"><span class="ico">&#xEADD;</span></span>
+              <span class="lw-round"><span class="ico">&#xE668;</span></span>
+            </div>
+            <ul class="lw-actions__list">
+              <li class="lw-action">
+                <span class="lw-action__icon"><span class="ico">&#xE95D;</span></span><span class="lw-action__text">Создать задачу</span>
+                <span class="lw-action__cmds"><span class="ico24">&#xEAA9;</span><span class="ico lw-action__del">&#xE65C;</span><span class="ico24">&#xE9D9;</span></span>
+              </li>
+              <li class="lw-action">
+                <span class="lw-action__icon"><span class="ico">&#xE654;</span></span><span class="lw-action__text">Совещание</span>
+                <span class="lw-action__cmds"><span class="ico24">&#xEAA9;</span><span class="ico lw-action__del">&#xE65C;</span><span class="ico24">&#xE9D9;</span></span>
+              </li>
+              <li class="lw-action">
+                <span class="lw-action__icon"><span class="ico">&#xEA38;</span></span><span class="lw-action__text">Авансовый отчет</span>
+                <span class="lw-action__cmds"><span class="ico24">&#xEAA9;</span><span class="ico lw-action__del">&#xE65C;</span><span class="ico24">&#xE9D9;</span></span>
+              </li>
+              <li class="lw-action">
+                <span class="lw-action__icon"><span class="ico">&#xEB33;</span></span><span class="lw-action__text">Новость</span>
+                <span class="lw-action__cmds"><span class="ico24">&#xEAA9;</span><span class="ico lw-action__del">&#xE65C;</span><span class="ico24">&#xE9D9;</span></span>
+              </li>
+              <li class="lw-action">
+                <span class="lw-action__icon"><span class="ico">&#xE671;</span></span><span class="lw-action__text">Загрузить</span>
+                <span class="lw-action__cmds"><span class="ico24">&#xEAA9;</span><span class="ico lw-action__del">&#xE65C;</span><span class="ico24">&#xE9D9;</span></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Редактор подменю: пока открыт, конструктор недоступен (щит ловит клики, фон не затеняется) -->
+      <div class="sme-shield" id="smeShield" hidden></div>
+      <section class="sm-editor" id="smEditor" hidden aria-label="Редактор подменю">
+        <div class="sme-head">
+          <div class="sme-head__left">
+            <span class="sme-icon" id="smeIcon"></span>
+            <span class="sme-title" id="smeTitle" spellcheck="false"></span>
+            <button class="sme-plus" type="button" aria-label="Добавить виджет"><span class="ico24">&#xEADD;</span></button>
+          </div>
+          <div class="sme-head__right">
+            <div class="sme-cmds">
+              <button class="sme-cmd" type="button" id="smeUndo" aria-label="Отменить" disabled><span class="ico24">&#xE6CF;</span></button>
+              <button class="sme-cmd" type="button" id="smeRedo" aria-label="Повторить" disabled><span class="ico24">&#xE6CA;</span></button>
+              <button class="sme-cmd" type="button" id="smeReset" aria-label="Вернуть исходное" disabled><span class="ico24">&#xE629;</span></button>
+            </div>
+            <div class="sme-final">
+              <button class="sw-done" type="button" id="smeDone" aria-label="Сохранить и закрыть"><span class="ico">&#xE75E;</span></button>
+              <button class="sme-close" type="button" id="smeClose" aria-label="Закрыть"><img src="assets/img/close-editor.svg" width="12" height="12" alt=""></button>
+            </div>
+          </div>
+        </div>
+        <div class="sme-card" id="smeCard"></div>
+      </section>
+
+      <!-- Редактор аккордеона («Настройка аккордеона»): как редактор подменю, ширина 300; в шапке слева (Figma 18581:22935) «+»
+           (страница — пунктом в конец).
+           Под шапкой — аккордеон во всю высоту в его цветах: строка шапки (птичка и saby, клик — окно «Логотип»), группа, пункты-виджеты -->
+      <section class="sm-editor acc-editor" id="accEditor" hidden aria-label="Редактор аккордеона">
+        <div class="sme-head">
+          <div class="sme-head__left">
+            <button class="sme-plus ae-cmd" type="button" id="aePlus" aria-label="Добавить пункт"><span class="ico24">&#xEADD;</span></button>
+          </div>
+          <div class="sme-head__right">
+            <div class="sme-cmds">
+              <button class="sme-cmd" type="button" id="aeUndo" aria-label="Отменить" disabled><span class="ico24">&#xE6CF;</span></button>
+              <button class="sme-cmd" type="button" id="aeRedo" aria-label="Повторить" disabled><span class="ico24">&#xE6CA;</span></button>
+              <button class="sme-cmd" type="button" id="aeReset" aria-label="Вернуть исходное" disabled><span class="ico24">&#xE629;</span></button>
+            </div>
+            <div class="sme-final">
+              <button class="sw-done" type="button" id="aeDone" aria-label="Сохранить и закрыть"><span class="ico">&#xE75E;</span></button>
+              <button class="sme-close" type="button" id="aeClose" aria-label="Закрыть"><img src="assets/img/close-editor.svg" width="12" height="12" alt=""></button>
+            </div>
+          </div>
+        </div>
+        <div class="ae-card" id="aeCard">
+          <div class="acc-header__row ae-brand" id="aeBrand"><span class="acc-bird ae-bird"></span><span class="acc-logo" id="aeLogo"></span></div>
+          <div class="acc-group ae-group"><span class="acc-burger"><span class="acc-icon16">&#xE91F;</span></span><span class="acc-group__title">предприятие</span></div>
+          <div class="ae-list" id="aeList"></div>
+        </div>
+      </section>
+
+      <!-- Выбор иконки раздела (Figma 44fX18O5Huk4hmoaANMNIC 10506:57779, без выбора цвета) -->
+      <!-- Меню «+» редактора подменю (Figma 9eLwMJLQCwT0xHKviN2j1P 16090:257796) -->
+      <div class="plus-menu" id="plusMenu" hidden>
+        <div class="plus-menu__head">
+          <input class="plus-menu__search" id="plusMenuSearch" type="text" placeholder="Название или ссылка на страницу">
+          <button class="plus-menu__close" type="button" id="plusMenuClose" aria-label="Закрыть"><img src="assets/img/close-popup.svg" width="28" height="28" alt=""></button>
+        </div>
+        <div class="plus-menu__list" id="plusMenuList"></div>
+      </div>
+
+      <div class="icon-pick" id="iconPick" hidden>
+        <div class="icon-pick__head">
+          <label class="icon-pick__search"><input type="text" placeholder="Найти" id="iconPickSearch" spellcheck="false"><span class="ico">&#xE662;</span></label>
+          <button class="icon-pick__close" type="button" id="iconPickClose" aria-label="Закрыть"><span class="ico24">&#xE66C;</span></button>
+        </div>
+        <div class="icon-pick__body">
+          <div class="icon-pick__list" id="iconPickList"></div>
+          <div class="icon-pick__tabs" id="iconPickTabs"></div>
+        </div>
+      </div>
+
+      <!-- Окно «Вкладки» (Figma xMQ3ZEN4AUINgwjVoxR8hS 18772:35266): список вкладок / одна вкладка -->
+      <section class="set-win tabs-win" id="tabsWin" hidden aria-label="Вкладки">
+        <div class="set-win__head">
+          <button class="tw-back" type="button" id="twBack" aria-label="Назад"><img src="assets/img/back-arrow.svg" width="7.5" height="13" alt=""></button>
+          <span class="set-win__title" id="twTitle">Вкладки</span>
+          <button class="tw-plus" type="button" id="twPlus" aria-label="Добавить вкладку"><span class="ico">&#xEADD;</span></button>
+          <div class="set-win__cmds">
+            <button class="sw-reset" type="button" id="twReset" aria-label="Сбросить настройки" disabled><span class="ico24">&#xE629;</span></button>
+            <button class="sw-done" type="button" id="twDone" aria-label="Сохранить и закрыть"><span class="ico">&#xE75E;</span></button>
+            <button class="sw-close" type="button" id="twClose" aria-label="Закрыть"><span class="ico24">&#xE66C;</span></button>
+          </div>
+        </div>
+        <div class="tw-list" id="twList"></div>
+        <div class="set-win__body tw-edit" id="twEdit">
+          <input class="tw-input" type="text" id="twInput" placeholder="Новая вкладка" spellcheck="false" autocomplete="off">
+          <div class="tw-access"><span class="mw-link">Доступна всем пользователям</span></div>
+        </div>
+      </section>
+
+      <!-- Окно настроек пункта подменю (Figma 9eLwMJLQCwT0xHKviN2j1P 18562:24378): по ⚙ тулбара виджета редактора,
+           в «Настройке аккордеона» и «Подменю → Редактор». Встаёт справа от виджета, как «Вкладки» от виджета вкладок.
+           Оно же — настройки пункта аккордеона в его редакторе (Figma 18585:28421): иконка у названия, «Наполнение пункта», «Закрепить пункт снизу» -->
+      <section class="set-win item-win" id="itemWin" hidden aria-label="Настройка пункта">
+        <div class="set-win__head">
+          <span class="iw-icon" id="iwIcon" hidden></span>
+          <span class="iw-title" id="iwTitle" spellcheck="false" contenteditable="plaintext-only"></span>
+          <div class="set-win__cmds">
+            <button class="sw-reset" type="button" id="iwReset" aria-label="Сбросить настройки" disabled><span class="ico24">&#xE629;</span></button>
+            <button class="sw-done" type="button" id="iwDone" aria-label="Сохранить и закрыть"><span class="ico">&#xE75E;</span></button>
+            <button class="sw-close" type="button" id="iwClose" aria-label="Закрыть"><span class="ico24">&#xE66C;</span></button>
+          </div>
+        </div>
+        <div class="iw-blocks">
+          <div class="set-win__body iw-grid" data-row="main">
+            <span class="iw-name" data-row="level">Вложенность</span>
+            <button class="mw-link iw-link" type="button" id="iwLevel" data-row="level"></button>
+            <span class="iw-name">По клику</span>
+            <div class="iw-field">
+              <span>Открыть</span><span class="iw-field__sep"></span><span class="iw-field__page" id="iwPage"></span>
+              <span class="ico iw-field__x">&#xE66C;</span>
+              <span class="ico iw-field__menu">&#xEA90;</span>
+            </div>
+          </div>
+          <div class="set-win__body iw-fill">
+            <div class="iw-fill__title" id="iwFillTitle">Дополнительно</div>
+            <div class="iw-grid">
+              <span class="iw-name" id="iwCmdName">Команда</span>
+              <button class="mw-link iw-link" type="button" id="iwCmd"></button>
+              <span class="iw-name" data-row="show">Выводить</span>
+              <button class="mw-link iw-link" type="button" id="iwShow" data-row="show"></button>
+              <span class="iw-name" data-row="side">Размещение</span>
+              <div class="iw-tumbler" id="iwSide" data-row="side">
+                <button type="button" data-side="right">На пункте</button>
+                <button type="button" data-side="left">Вместо иконки</button>
+              </div>
+            </div>
+            <button class="iw-check" type="button" id="iwPanel" data-row="show"><span class="iw-check__box"></span><span>Открывать панель по клику на счетчик</span></button>
+            <!-- закреплённый пункт: вместо чипсы — свойство «Закреплен снизу ×» на белой подложке блока, в 8 ниже (редактор PropertyGrid,
+                 Figma lw5BTOhkhczQmdiTvlnhnG 14423:35467); × открепляет -->
+            <span class="iw-prop" id="iwPinned" hidden><span>Закреплен снизу</span><button class="iw-prop__x" type="button" id="iwUnpin" aria-label="Открепить"><span class="ico">&#xE66C;</span></button></span>
+          </div>
+        </div>
+        <div class="iw-chips" data-row="pin"><button class="iw-chip" type="button" id="iwPin">Закрепить пункт снизу</button></div>
+      </section>
+      <div class="mw-menu iw-menu" id="iwMenu" hidden>
+        <div class="mw-menu__list" id="iwMenuList"></div>
+        <button class="mw-menu__close" type="button" id="iwMenuClose" aria-label="Закрыть"><img src="assets/img/close-menu.svg" width="12" height="12" alt=""></button>
+      </div>
+
+      <!-- Меню «+» виджета вкладок (Figma 18797:88559): работает только «С чистого листа» -->
+      <div class="icon-menu tab-add" id="tabAddMenu" hidden>
+        <div class="icon-menu__head">
+          <span class="ico24 icon-menu__head-icon">&#xE95D;</span>
+          <span class="icon-menu__title">вкладка</span>
+          <button class="icon-menu__close" type="button" id="tabAddClose" aria-label="Закрыть"><img src="assets/img/close-popup.svg" width="28" height="28" alt=""></button>
+        </div>
+        <div class="icon-menu__list">
+          <button class="icon-menu__item" type="button" id="tabAddBlank"><span class="ico24">&#xE735;</span><span class="icon-menu__text">С чистого листа</span></button>
+          <div class="tab-add__sep"></div>
+          <div class="icon-menu__item is-static"><span class="ico24">&#xE730;</span><span class="icon-menu__text">С компьютера</span></div>
+          <div class="icon-menu__item is-static"><span class="tab-add__ico16"><span class="ico">&#xE6FD;</span></span><span class="icon-menu__text">Из буфера обмена</span><span class="ico tab-add__more">&#xE6A2;</span></div>
+          <div class="icon-menu__item is-static"><span class="ico24">&#xE607;</span><span class="icon-menu__text">Из документов</span></div>
+          <div class="icon-menu__item is-static"><span class="ico24">&#xEB59;</span><span class="icon-menu__text">Нашей компании</span></div>
+        </div>
+      </div>
+
+      <!-- Меню «⋯» виджета вкладок (как Figma 18715:98626, только «Добавить» и «Настроить») -->
+      <div class="tab-dots" id="tabDotsMenu" hidden>
+        <div class="tab-dots__list">
+          <button class="icon-menu__item" type="button" data-act="add"><span class="ico24">&#xE95D;</span><span class="icon-menu__text">Добавить</span></button>
+          <button class="icon-menu__item" type="button" data-act="settings"><span class="ico24">&#xEAA9;</span><span class="icon-menu__text">Настроить</span></button>
+        </div>
+        <button class="mw-menu__close" type="button" id="tabDotsClose" aria-label="Закрыть"><img src="assets/img/close-menu.svg" width="12" height="12" alt=""></button>
+      </div>
+
+      <!-- Подтверждение «Сохранить изменения?» (Figma nuC4KFMiS36uDWDUp9wKGl 4064:21938) — по центру сцены, поверх всего -->
+      <div class="confirm-layer" id="smeConfirm" hidden>
+        <div class="confirm" role="dialog" aria-modal="true" aria-labelledby="smeConfirmMsg">
+          <div class="confirm__head"><span class="confirm__marker"></span></div>
+          <div class="confirm__content">
+            <p class="confirm__message" id="smeConfirmMsg">Сохранить изменения?</p>
+            <p class="confirm__details">Чтобы продолжить редактирование, нажмите «Отмена»</p>
+          </div>
+          <div class="confirm__footer">
+            <button class="confirm__btn confirm__btn--primary" type="button" data-answer="yes">Да</button>
+            <button class="confirm__btn" type="button" data-answer="no">Нет</button>
+            <button class="confirm__btn" type="button" data-answer="cancel">Отмена</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Удаление виджета вкладок из его тулбара, когда пользовательские вкладки настроены — оформление как у «Сохранить изменения?» -->
+      <div class="confirm-layer" id="tabsDelConfirm" hidden>
+        <div class="confirm" role="dialog" aria-modal="true" aria-labelledby="tabsDelConfirmMsg">
+          <div class="confirm__head"><span class="confirm__marker"></span></div>
+          <div class="confirm__content">
+            <p class="confirm__message" id="tabsDelConfirmMsg">Вы собираетесь удалить все пользовательские вкладки. Продолжить?</p>
+          </div>
+          <div class="confirm__footer">
+            <button class="confirm__btn confirm__btn--primary" type="button" data-answer="yes">Да</button>
+            <button class="confirm__btn" type="button" data-answer="cancel">Отмена</button>
+          </div>
+        </div>
+      </div>
+      <!-- Переход на другую страницу приложения при несохранённых правках — оформление как у «Сохранить изменения?» выше -->
+      <div class="confirm-layer" id="navConfirm" hidden>
+        <div class="confirm" role="dialog" aria-modal="true" aria-labelledby="navConfirmMsg">
+          <div class="confirm__head"><span class="confirm__marker"></span></div>
+          <div class="confirm__content">
+            <p class="confirm__message" id="navConfirmMsg">Сохранить изменения текущей страницы?</p>
+          </div>
+          <div class="confirm__footer">
+            <button class="confirm__btn confirm__btn--primary" type="button" data-answer="yes">Да</button>
+            <button class="confirm__btn" type="button" data-answer="no">Нет</button>
+            <button class="confirm__btn" type="button" data-answer="cancel">Отмена</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Меню «Иконка» (загрузка логотипа) -->
+      <div class="icon-menu" id="iconMenu" hidden>
+        <div class="icon-menu__head">
+          <span class="ico24 icon-menu__head-icon">&#xE671;</span>
+          <span class="icon-menu__title">иконка</span>
+          <button class="icon-menu__close" type="button" id="iconMenuClose" aria-label="Закрыть"><img src="assets/img/close-popup.svg" width="28" height="28" alt=""></button>
+        </div>
+        <div class="icon-menu__list">
+          <button class="icon-menu__item" type="button"><span class="ico24">&#xE730;</span><span class="icon-menu__text">С компьютера</span></button>
+          <button class="icon-menu__item" type="button"><span class="ico24">&#xE90A;</span><span class="icon-menu__text">Из коллекции</span></button>
+        </div>
+      </div>
+
+      <!-- Сценарий «Админка (Inside)» (Figma xMQ3ZEN4AUINgwjVoxR8hS 18428:12935): экран 1600×843 поверх конструктора.
+           Фон — картинка (меню saby inside, список, колонка справа); поверх свёрстана панель «Online» по Figma 19470:56425:
+           мастер-список (только ховер), раздел «Оформление» — «Настроить ›» открывает конструктор,
+           превью 700×350 — цвета и фон токенами темы со сцены. -->
+      <section class="ins" id="inside" hidden aria-label="Админка">
+        <div class="ins__screen">
+          <img class="ins__bg" src="assets/img/inside/screen.png" width="1600" height="843" alt="">
+          <div class="adm">
+            <div class="adm__head">
+              <span class="adm__logo"><img src="assets/img/inside/online-logo.svg" width="40" height="40" alt=""></span>
+              <span class="adm__title">Online</span>
+              <span class="adm__ver">26.4234</span>
+              <span class="adm__pub">Опубликовано для всех</span>
+              <span class="adm__save">Сохранить</span>
+            </div>
+            <ul class="adm-ml">
+              <li class="adm-ml__item">Настройка</li>
+              <li class="adm-ml__item is-sel">Оформление</li>
+              <li class="adm-ml__item adm-ml__item--sub">Приветствие<i class="adm-sw is-on"></i></li>
+              <li class="adm-ml__item">Авторизация</li>
+              <li class="adm-ml__item">Домены</li>
+              <li class="adm-ml__item">Компоненты</li>
+              <li class="adm-ml__item">Контекст данных</li>
+              <li class="adm-ml__item">Тарифы</li>
+              <li class="adm-ml__item">Роли</li>
+              <li class="adm-ml__item">Оповещения</li>
+              <li class="adm-ml__item">Компаньоны</li>
+              <li class="adm-ml__item">Активность</li>
+              <li class="adm-ml__item">Конфигурации</li>
+              <li class="adm-ml__item">Манифест<i class="adm-sw"></i></li>
+            </ul>
+            <div class="adm__main">
+              <div class="adm-intro">
+                <p class="adm-intro__title">Настройка интерфейса Saby</p>
+                <div class="adm-intro__tags">
+                  <span><i class="ico">&#xE9E2;</i>Логотип</span>
+                  <span><i class="ico">&#xEBBA;</i>Компоновка</span>
+                  <span class="adm-intro__g8"><i class="ico">&#xEBBE;</i>Меню</span>
+                  <span class="adm-intro__g8"><i class="ico">&#xEBA0;</i>Язык</span>
+                </div>
+                <button class="ins-setup" type="button">Настроить<span class="ico">&#xE9AB;</span></button>
+              </div>
+              <!-- Превью (Figma 19470:56532) — то же превью, что в «Аккаунте», 700×350 без масштаба -->
+              <div class="ipv ipv--700">
+                <div class="ipv__acc">
+                  <div class="ipv__head"><span class="ipv__bird"></span><span class="ipv__logo"></span></div>
+                  <div class="ipv__item"><i></i><b></b></div>
+                  <div class="ipv__item is-sel"><i></i><b></b></div>
+                  <div class="ipv__item"><i></i><b></b></div>
+                  <div class="ipv__item"><i></i><b></b></div>
+                  <div class="ipv__item"><i></i><b></b></div>
+                </div>
+                <div class="ipv__dash">
+                  <div class="ipv__page">
+                    <div class="ipv__row1"><i class="ipv__a1"></i><i class="ipv__search"></i></div>
+                    <div class="ipv__tabs"><span class="ipv__tab"><i></i><i class="ipv__dot"></i></span><span class="ipv__tab"><i></i></span><span class="ipv__tab ipv__tab--on"><i></i><i class="ipv__under"></i></span></div>
+                    <div class="ipv__card">
+                      <div class="ipv__line"><i class="ipv__sq"></i><span><span><i style="width:24.466px"></i><i style="width:17.192px"></i></span><i style="width:95.218px"></i><i style="width:57.528px"></i></span></div>
+                      <i class="ipv__sep"></i>
+                      <div class="ipv__line"><i class="ipv__sq"></i><span><span><i style="width:24.466px"></i><i style="width:17.192px"></i></span><i style="width:95.218px"></i><i style="width:57.528px"></i></span></div>
+                      <i class="ipv__sep"></i>
+                      <div class="ipv__line"><i class="ipv__sq"></i><span><span><i style="width:24.466px"></i><i style="width:17.192px"></i></span><i style="width:95.218px"></i><i style="width:57.528px"></i></span></div>
+                    </div>
+                  </div>
+                  <div class="ipv__rp"><span><i></i><i></i></span><span><i class="ipv__shop"></i><i></i><i></i><i class="ipv__lav"></i></span></div>
+                </div>
+                <div class="ipv__cu">
+                  <div class="ipv__note"><i class="ipv__cap"></i><i class="ipv__blk"></i></div>
+                  <div class="ipv__note"><i class="ipv__cap"></i><span class="ipv__sqs"><i></i><i></i><i></i></span></div>
+                  <div class="ipv__note"><i class="ipv__cap"></i><i class="ipv__blk"></i></div>
+                  <div class="ipv__note ipv__note--news"><i class="ipv__pic"></i><span><i></i><i></i><i class="ipv__end"></i></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Сценарий «Аккаунт» (Figma xMQ3ZEN4AUINgwjVoxR8hS 19523:72338): экран 1600×843 — картинка; середина живая —
+           как в админке: «Настройка интерфейса Saby», строка разделов, «Настроить ›» (открывает конструктор) и превью 700×350 -->
+      <section class="ins" id="account" hidden aria-label="Аккаунт">
+        <div class="ins__screen">
+          <img class="ins__bg ins__bg--acc" src="assets/img/account/bg.png" width="1600" height="843" alt="">
+          <i class="ins-acc-reset"></i><!-- «Сбросить настройки аккаунта» в макете скрыта — закрыта подложкой -->
+          <div class="ins-main ins-main--acc">
+            <div class="adm-intro">
+              <p class="adm-intro__title">Настройка интерфейса Saby</p>
+              <div class="adm-intro__tags">
+                <span><i class="ico">&#xE9E2;</i>Логотип</span>
+                <span><i class="ico">&#xEBBA;</i>Компоновка</span>
+                <span class="adm-intro__g8"><i class="ico">&#xEBBE;</i>Меню</span>
+                <span class="adm-intro__g8"><i class="ico">&#xEBA0;</i>Язык</span>
+              </div>
+              <button class="ins-setup" type="button">Настроить<span class="ico">&#xE9AB;</span></button>
+            </div>
+            <div class="ipv ipv--700">
+              <div class="ipv__acc">
+                <div class="ipv__head"><span class="ipv__bird"></span><span class="ipv__logo"></span></div>
+                <div class="ipv__item"><i></i><b></b></div>
+                <div class="ipv__item is-sel"><i></i><b></b></div>
+                <div class="ipv__item"><i></i><b></b></div>
+                <div class="ipv__item"><i></i><b></b></div>
+                <div class="ipv__item"><i></i><b></b></div>
+              </div>
+              <div class="ipv__dash">
+                <div class="ipv__page">
+                  <div class="ipv__row1"><i class="ipv__a1"></i><i class="ipv__search"></i></div>
+                  <div class="ipv__tabs"><span class="ipv__tab"><i></i><i class="ipv__dot"></i></span><span class="ipv__tab"><i></i></span><span class="ipv__tab ipv__tab--on"><i></i><i class="ipv__under"></i></span></div>
+                  <div class="ipv__card">
+                    <div class="ipv__line"><i class="ipv__sq"></i><span><span><i style="width:24.466px"></i><i style="width:17.192px"></i></span><i style="width:95.218px"></i><i style="width:57.528px"></i></span></div>
+                    <i class="ipv__sep"></i>
+                    <div class="ipv__line"><i class="ipv__sq"></i><span><span><i style="width:24.466px"></i><i style="width:17.192px"></i></span><i style="width:95.218px"></i><i style="width:57.528px"></i></span></div>
+                    <i class="ipv__sep"></i>
+                    <div class="ipv__line"><i class="ipv__sq"></i><span><span><i style="width:24.466px"></i><i style="width:17.192px"></i></span><i style="width:95.218px"></i><i style="width:57.528px"></i></span></div>
+                  </div>
+                </div>
+                <div class="ipv__rp"><span><i></i><i></i></span><span><i class="ipv__shop"></i><i></i><i></i><i class="ipv__lav"></i></span></div>
+              </div>
+              <div class="ipv__cu">
+                <div class="ipv__note"><i class="ipv__cap"></i><i class="ipv__blk"></i></div>
+                <div class="ipv__note"><i class="ipv__cap"></i><span class="ipv__sqs"><i></i><i></i><i></i></span></div>
+                <div class="ipv__note"><i class="ipv__cap"></i><i class="ipv__blk"></i></div>
+                <div class="ipv__note ipv__note--news"><i class="ipv__pic"></i><span><i></i><i></i><i class="ipv__end"></i></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Сценарий «Пользователь → Из настроек» (Figma xMQ3ZEN4AUINgwjVoxR8hS 19523:73629): экран 1600×843 — картинка (аккордеон,
+           информеры, ЦУ); середина живая: мастер-список настроек (только ховер), «Интерфейс» — как в админке, кликается только «Настроить ›» -->
+      <section class="ins" id="userSettings" hidden aria-label="Пользователь — настройки">
+        <div class="ins__screen">
+          <img class="ins__bg ins__bg--user" src="assets/img/user/settings.png" width="1602" height="845" alt="">
+          <div class="usr">
+            <ul class="adm-ml adm-ml--usr">
+              <li class="adm-ml__item">Доступ и роли</li>
+              <li class="adm-ml__item is-sel">Интерфейс</li>
+              <li class="adm-ml__item">Уведомления</li>
+              <li class="adm-ml__item">Рабочее место</li>
+              <li class="adm-ml__item">Устройства</li>
+              <li class="adm-ml__item">Действия</li>
+              <li class="adm-ml__item">Бизнес-процессы</li>
+              <li class="adm-ml__item">Проходная</li>
+              <li class="adm-ml__item">Подписи</li>
+              <li class="adm-ml__item">Десктопные приложения</li>
+              <li class="adm-ml__item">Приветствие<i class="adm-sw"></i></li>
+            </ul>
+            <div class="usr__main">
+              <div class="adm-intro">
+                <p class="adm-intro__title">Настройка интерфейса Saby</p>
+                <div class="adm-intro__tags">
+                  <span><i class="ico">&#xE9E2;</i>Логотип</span>
+                  <span><i class="ico">&#xEBBA;</i>Компоновка</span>
+                  <span class="adm-intro__g8"><i class="ico">&#xEBBE;</i>Меню</span>
+                  <span class="adm-intro__g8"><i class="ico">&#xEBA0;</i>Язык</span>
+                </div>
+                <button class="ins-setup" type="button">Настроить<span class="ico">&#xE9AB;</span></button>
+              </div>
+              <div class="ipv ipv--700">
+                <div class="ipv__acc">
+                  <div class="ipv__head"><span class="ipv__bird"></span><span class="ipv__logo"></span></div>
+                  <div class="ipv__item"><i></i><b></b></div>
+                  <div class="ipv__item is-sel"><i></i><b></b></div>
+                  <div class="ipv__item"><i></i><b></b></div>
+                  <div class="ipv__item"><i></i><b></b></div>
+                  <div class="ipv__item"><i></i><b></b></div>
+                </div>
+                <div class="ipv__dash">
+                  <div class="ipv__page">
+                    <div class="ipv__row1"><i class="ipv__a1"></i><i class="ipv__search"></i></div>
+                    <div class="ipv__tabs"><span class="ipv__tab"><i></i><i class="ipv__dot"></i></span><span class="ipv__tab"><i></i></span><span class="ipv__tab ipv__tab--on"><i></i><i class="ipv__under"></i></span></div>
+                    <div class="ipv__card">
+                      <div class="ipv__line"><i class="ipv__sq"></i><span><span><i style="width:24.466px"></i><i style="width:17.192px"></i></span><i style="width:95.218px"></i><i style="width:57.528px"></i></span></div>
+                      <i class="ipv__sep"></i>
+                      <div class="ipv__line"><i class="ipv__sq"></i><span><span><i style="width:24.466px"></i><i style="width:17.192px"></i></span><i style="width:95.218px"></i><i style="width:57.528px"></i></span></div>
+                      <i class="ipv__sep"></i>
+                      <div class="ipv__line"><i class="ipv__sq"></i><span><span><i style="width:24.466px"></i><i style="width:17.192px"></i></span><i style="width:95.218px"></i><i style="width:57.528px"></i></span></div>
+                    </div>
+                  </div>
+                  <div class="ipv__rp"><span><i></i><i></i></span><span><i class="ipv__shop"></i><i></i><i></i><i class="ipv__lav"></i></span></div>
+                </div>
+                <div class="ipv__cu">
+                  <div class="ipv__note"><i class="ipv__cap"></i><i class="ipv__blk"></i></div>
+                  <div class="ipv__note"><i class="ipv__cap"></i><span class="ipv__sqs"><i></i><i></i><i></i></span></div>
+                  <div class="ipv__note"><i class="ipv__cap"></i><i class="ipv__blk"></i></div>
+                  <div class="ipv__note ipv__note--news"><i class="ipv__pic"></i><span><i></i><i></i><i class="ipv__end"></i></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Сценарий «Виды подменю и пунктов»: статичные подменю (Контакты, Бизнес, Календарь) и справа колонкой — отличающиеся пункты
+           подменю (заголовки, уровни, элементы справа) на фоне конструктора, только ховеры; наполняет app.js -->
+      <section class="kinds" id="submenuKinds" aria-label="Виды подменю и пунктов"></section>
+      <!-- Сценарий «Редактор подменю»: только редактор подменю «Документы» на фоне конструктора; после ✓/✕ открывается заново -->
+      <div class="kinds editor-only" id="editorOnly">
+        <div class="editor-only__runtime"><div class="editor-only__rt">
+          <div class="kind"><div class="kind__label">Рантайм — аккордеон</div><div class="rt-acc" id="runtimeAcc"></div><p class="rt-note" id="runtimeNote" hidden>Подменю не может состоять из одного пункта</p></div>
+          <div class="kind"><div class="kind__label">Рантайм — подменю</div><div id="runtimePreview"></div></div>
+        </div></div>
+        <div class="kind editor-only__design"><div class="kind__label">Дизайнтайм</div></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/gh/MarieSmi/ui-kit@1.0.0/components/demo-frame/demo-frame.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
